@@ -1,0 +1,21 @@
+div.duplicateThis_wrapper{
+}
+div.duplicateThis_wrapper > .duplicated_element{
+    position: relative;
+    padding-right: 40px;
+    margin-bottom: 3px;
+}
+div.duplicateThis_wrapper > .duplicated_element > .glyphicon{
+    position: absolute;
+    top: 4px;
+    cursor: pointer;
+}
+div.duplicateThis_wrapper > .duplicated_element > .glyphicon.glyphicon-plus{
+    right: 8px;
+}
+div.duplicateThis_wrapper > .duplicated_element > .glyphicon.glyphicon-minus{
+    right: 9px;
+}
+div.duplicateThis_wrapper .duplicated_element .duplicateThis_wrapper{
+    display: inline-block;
+}
