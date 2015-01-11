@@ -77,6 +77,7 @@ $autoload['helper'] = [
 	'form',
 	'common',
     'bootstrap',
+    'menu'
 ];
 
 

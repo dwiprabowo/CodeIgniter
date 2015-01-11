@@ -17,6 +17,9 @@ class Menu_Model extends CI_Model{
 			'glyphicon' => 'user',
 			'label' => 'User',
 			'action' => 'user',
+			'active_in' => [
+				'user'
+			]
 		],
 		'spk' => [
 			'glyphicon' => 'file',

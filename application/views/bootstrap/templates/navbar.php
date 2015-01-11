@@ -25,6 +25,7 @@
                         <li class="
                             <?=@$v->menus?'dropdown':''?>
                             <?=@$v->active?'':'disabled'?>
+                            <?=is_currently_active(@$v->active_in)?>
                             "
                         >
                             <a
