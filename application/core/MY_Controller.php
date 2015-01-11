@@ -6,6 +6,8 @@ class MY_Controller extends CI_Controller{
     protected $menus = [];
     protected $container_menus = [];
 
+    protected $required_permission = [];
+
     private $allowed_http_methods = [
         'get', 'post'
     ];
@@ -19,6 +21,17 @@ class MY_Controller extends CI_Controller{
         $this->load->model('temp_model');
         $this->load->model('user_model');
         $this->init();
+        $this->check_permission();
+    }
+
+    private function check_permission(){
+        $id = $this->temp_model->login();
+        foreach($this->required_permission as $k => $v){
+            if(!in_array($v, $this->user_model->get_admin_data($id))){
+                $this->alert->error("You don't have permission to access this Page!");
+                redirect('home');
+            }
+        }
     }
 
     public function _build(){

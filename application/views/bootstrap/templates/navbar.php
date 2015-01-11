@@ -28,7 +28,7 @@
                             "
                         >
                             <a
-                                href="<?=@$v->action?site_url($v->action):'#'?>"
+                                href="<?=create_link(@$v->action)?>"
                             <?php if(@$v->menus): ?>
                                 class="dropdown-toggle"
                                 data-toggle="dropdown"

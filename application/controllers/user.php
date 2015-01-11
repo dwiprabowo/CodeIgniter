@@ -26,6 +26,16 @@ class User extends MY_Controller{
 			'action' => 'user/permission',
 			'active' => TRUE,
 		],
+		'profile' => [
+			'glyphicon' => 'edit',
+			'label' => 'Edit Profile',
+			'action' => 'user/profile',
+			'active' => TRUE,
+		],
+	];
+
+	protected $required_permission = [
+		'user'
 	];
 
 	function __construct(){
@@ -50,7 +60,7 @@ class User extends MY_Controller{
 	public function all_get(){
 		$this->_set_data(
 			'users'
-			, $this->user_model->with('login', 'administration')->all()
+			, $this->user_model->with(['login', 'administration'])->all()
 		);
 	}
 
@@ -92,4 +102,6 @@ class User extends MY_Controller{
 		$this->alert->success("You've granted a new permission for user");
 		redirect('user');
 	}
+
+	public function profile_get(){}
 }

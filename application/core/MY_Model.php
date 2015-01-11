@@ -20,8 +20,15 @@ class MY_Model extends CI_Model{
     protected $_with = [];
 
     protected $belongs_to = [];
+    protected $has_many = [];
+    protected $has_one = [];
 
     protected $models = FALSE;
+
+    protected $soft_delete = FALSE;
+    protected $soft_delete_key = 'deleted';
+    protected $_temporary_with_deleted = FALSE;
+    protected $_temporary_only_deleted = FALSE;
 
     protected $form = [
         'title' => 'Form',
@@ -113,7 +120,23 @@ class MY_Model extends CI_Model{
     }
 
     function all(){
-        $result = $this->db->get($this->_table)->{$this->_return_type(1)}();
+        $this->trigger('before_get');
+
+        if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
+        {
+            $this->db->where($this->soft_delete_key, (bool)$this->_temporary_only_deleted);
+        }
+
+        $result = $this->db->get($this->_table)
+                           ->{$this->_return_type(1)}();
+        $this->_temporary_return_type = $this->return_type;
+
+        foreach ($result as $key => &$row)
+        {
+            $row = $this->trigger('after_get', $row, ($key == count($result) - 1));
+        }
+
+        $this->_with = array();
         return $result;
     }
 
@@ -241,6 +264,20 @@ class MY_Model extends CI_Model{
         return $row;
     }
 
+    public function get_many($values)
+    {
+        $this->db->where_in($this->primary_key, $values);
+
+        return $this->all();
+    }
+
+    public function get_many_by()
+    {
+        $where = func_get_args();
+        $this->_set_where($where);
+        return $this->all();
+    }
+
     function _set_where($params){
         if(count($params) == 1){
             $this->db->where($params[0]);
@@ -264,6 +301,10 @@ class MY_Model extends CI_Model{
     }
 
     public function relate($row){
+        if(empty($row)){
+            return $row;
+        }
+
         foreach($this->belongs_to as $k => $v){
             if(is_string($v)){
                 $relationship = $v;
@@ -289,6 +330,68 @@ class MY_Model extends CI_Model{
                         $this->
                         {$options['model']}->
                         get($row[$options['primary_key']]);
+                }
+            }
+        }
+
+        foreach ($this->has_many as $k => $v)
+        {
+            if (is_string($v))
+            {
+                $relationship = $v;
+                $options = [
+                    'primary_key' => 'id',
+                    'model' => $v. '_model'
+                ];
+            }
+            else
+            {
+                $relationship = $k;
+                $options = $v;
+            }
+
+            if (in_array($relationship, $this->_with))
+            {
+                $this->load->model($options['model'], $relationship . '_model');
+
+                if (is_object($row))
+                {
+                    $row->{$relationship} = $this->{$relationship . '_model'}->get_many_by($options['primary_key'], $row->{$this->primary_key});
+                }
+                else
+                {
+                    $row[$relationship] = $this->{$relationship . '_model'}->get_many_by($options['primary_key'], $row[$this->primary_key]);
+                }
+            }
+        }
+
+        foreach ($this->has_one as $k => $v)
+        {
+            if (is_string($v))
+            {
+                $relationship = $v;
+                $options = [
+                    'primary_key' => 'id',
+                    'model' => $v. '_model'
+                ];
+            }
+            else
+            {
+                $relationship = $k;
+                $options = $v;
+            }
+
+            if (in_array($relationship, $this->_with))
+            {
+                $this->load->model($options['model'], $relationship . '_model');
+
+                if (is_object($row))
+                {
+                    $row->{$relationship} = $this->{$relationship . '_model'}->get_by($options['primary_key'], $row->{$this->primary_key});
+                }
+                else
+                {
+                    $row[$relationship] = $this->{$relationship . '_model'}->get_by($options['primary_key'], $row[$this->primary_key]);
                 }
             }
         }

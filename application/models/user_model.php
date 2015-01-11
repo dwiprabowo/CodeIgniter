@@ -14,6 +14,11 @@ class User_Model extends MY_Model{
         'administration'
     ];
 
+    protected $has_one = [
+        'login',
+        'administration',
+    ];
+
     protected $form = [
         'fields' => [
             [

@@ -4,6 +4,10 @@ class Login_Model extends MY_Model{
     protected $plural_name = 'logins';
     protected $singular_name = 'login';
 
+    protected $belongs_to = [
+        'user'
+    ];
+    
     protected $form = [
         'title' => 'Please sign in',
         'fields' => [

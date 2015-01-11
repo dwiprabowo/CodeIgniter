@@ -15,9 +15,15 @@
 		-webkit-transition: border-bottom .3s ease;
 		transition: border-color .2s ease;
 	}
+	.main-menu > div.main-menu-item:hover{
+		border-color: #333;
+	}
 	.main-menu > div.main-menu-item.disabled{
 		cursor: default;
 		color: #777;
+	}
+	.main-menu > div.main-menu-item.disabled:hover{
+		border-color: transparent;
 	}
 	.main-menu > div.main-menu-item > span {
 		font-size: 72px;
