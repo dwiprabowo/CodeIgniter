@@ -30,11 +30,24 @@ class MY_Model extends CI_Model{
     protected $_temporary_with_deleted = FALSE;
     protected $_temporary_only_deleted = FALSE;
 
-    protected $form = [
+    protected $form_template = [
         'title' => 'Form',
         'fields' => [],
         'submit' => 'Submit',
     ];
+
+    protected $form_default = [
+        'default' => 'default',
+        'items' => [
+            'default' => [
+                'title' => 'Form',
+                'fields' => [],
+                'submit' => 'Submit'
+            ]
+        ]
+    ];
+
+    protected $form = [];
 
     private $form_field_tpl = [
         'type' => 'text'
@@ -47,9 +60,37 @@ class MY_Model extends CI_Model{
         parent::__construct();
         $this->_table = $this->plural_name;
         $this->_temporary_return_type = $this->return_type;
-        $this->generate_fields();
-        $this->build_validator();
+        $this->init_form();
         $this->load_dependency_models($this->models);
+    }
+
+    public function set_form_template($item_name = FALSE){
+        if(!$item_name){
+            return;
+        }
+        $found = FALSE;
+        foreach ($this->form['items'] as $k => $v) {
+            if($item_name == $k){
+                $this->form['default'] = $k;
+                $found = TRUE;
+                break;
+            }
+        }
+        if(!$found){
+            show_error('Cannot find any template you provide!');
+        }
+    }
+
+    private function init_form(){
+        $this->form = array_replace_recursive($this->form_default, $this->form);
+        foreach ($this->form['items'] as $k => $v) {
+            $this->form['items'][$k] = 
+                array_replace_recursive(
+                    $this->form_default['items']['default']
+                    , $this->form['items'][$k]
+                );
+        }
+        $this->generate_fields();
     }
 
     private function load_dependency_models($models){
@@ -62,7 +103,8 @@ class MY_Model extends CI_Model{
     }
 
     private function build_validator(){
-        foreach ($this->form['fields'] as $key => $value) {
+        $template = $this->form['default'];
+        foreach ($this->form['items'][$template]['fields'] as $key => $value) {
             $validate = [
                 'field' => $value['name'],
                 'label' => $value['label'],
@@ -81,17 +123,23 @@ class MY_Model extends CI_Model{
         }
     }
 
-    function get_form($return_object=TRUE){
-        $result = $this->form;
+    function get_form($template = FALSE, $return_object = TRUE){
+        if(!$template){
+            $template = $this->form['default'];
+        }
+        $result = $this->form['items'][$template];
         if($return_object){
-            $result = array_to_object($this->form);
+            $result = array_to_object($result);
         }
         return $result;
     }
 
     function generate_fields(){
-        foreach ($this->form['fields'] as $key => $value) {
-            $this->form['fields'][$key] = array_merge($this->form_field_tpl, $value);
+        foreach ($this->form['items'] as $k => $v) {
+            foreach($this->form['items'][$k]['fields'] as $_k => $_v){
+                $this->form['items'][$k]['fields'][$_k] = 
+                    array_replace_recursive($this->form_field_tpl, $_v);
+            }
         }
     }
 
@@ -171,6 +219,9 @@ class MY_Model extends CI_Model{
     }
 
     function update($primary_value, $data){
+        if(!$this->input->is_cli_request()){
+            $data = $this->validate($data);
+        }
         if($data !== FALSE){
             $result = $this->db->where($this->primary_key, $primary_value)
                         ->set($data)
@@ -221,6 +272,7 @@ class MY_Model extends CI_Model{
     }
 
     function validate($data){
+        $this->build_validator();
         if(!empty($data) AND !empty($this->validate)){
             foreach($data as $k => $v){
                 $_POST[$k] = $v;

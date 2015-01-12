@@ -103,7 +103,7 @@ class Bootstrap{
         show_error("Bootstrap library: unknown $label type");
     }
 
-    function form($model, $action = FALSE){
+    function form($model, $initial_data = FALSE, $action = FALSE){
         $form = $model->get_form();
         if($action){
             $form->action = $action;
@@ -122,6 +122,9 @@ class Bootstrap{
             if($value->autofocus){
                 $form->autofocus_id = $value->name;
                 $autofocus_set = TRUE;
+            }
+            if($initial_data){
+                $value->value = $initial_data->{$value->name};
             }
             $value->input_element = input_element($value->type, $value);
         }

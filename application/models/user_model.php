@@ -20,20 +20,32 @@ class User_Model extends MY_Model{
     ];
 
     protected $form = [
-        'fields' => [
-            [
-                'name' => 'username',
-                'label' => 'Username',
-                'rules' => 'required|is_unique[users.username]',
+        'items' => [
+            'default' => [
+                'fields' => [
+                    [
+                        'name' => 'username',
+                        'label' => 'Username',
+                        'rules' => 'required|is_unique[users.username]',
+                    ],
+                    [
+                        'name' => 'password',
+                        'label' => 'Password',
+                        'type' => 'password',
+                        'rules' => 'required|min_length[6]',
+                    ],
+                ],
             ],
-            [
-                'name' => 'password',
-                'label' => 'Password',
-                'type' => 'password',
-                'rules' => 'required|min_length[6]',
+            'complete' => [
+                'fields' => [
+                    [
+                        'name' => 'name',
+                        'label' => 'Name',
+                        'rules' => 'required',
+                    ],
+                ],
             ],
-        ],
-        'submit' => 'Register'
+        ]
     ];
 
     function insert_relations($data){

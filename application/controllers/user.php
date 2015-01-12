@@ -103,5 +103,22 @@ class User extends MY_Controller{
 		redirect('user');
 	}
 
-	public function profile_get(){}
+	public function profile_get(){
+		$this->_set_data(
+			'user'
+			, $this->user_model->get($this->temp_model->login()));
+	}
+
+	public function profile_post($data){
+		$this->user_model->set_form_template('complete');
+		$result = $this->user_model->update(
+			$this->temp_model->login()
+			, $data
+		);
+		if($result){
+			$this->alert->success('Your profile updated!');
+			redirect('user');
+		}
+		redirect('user/profile');
+	}
 }

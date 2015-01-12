@@ -14,7 +14,7 @@ class Migration_Insert_Initial_Data_Admin extends CI_Migration{
                 'username' => 'admin',
                 'login_id' => 1,
                 'administration_id' => 1,
-                'password' => 'R4h4514',
+                'password' => 'password',
                 'data' => 'user,spk,stock,do,sales,stnk,bpkb',
                 'is_active' => 1
             ]

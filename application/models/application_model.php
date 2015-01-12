@@ -19,7 +19,7 @@ class Application_Model extends MY_Model{
                 "name" => "enable_profiler",
                 "label" => "Profiler Enabled?",
                 "type" => "bool",
-        		"value" => FALSE,
+        		"value" => TRUE,
             ],
             [
                 "name" => "description",

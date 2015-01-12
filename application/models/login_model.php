@@ -9,21 +9,25 @@ class Login_Model extends MY_Model{
     ];
     
     protected $form = [
-        'title' => 'Please sign in',
-        'fields' => [
-            [
-                'name' => 'username',
-                'label' => 'Username',
-                'rules' => 'required',
-            ],
-            [
-                'name' => 'password',
-                'label' => 'Password',
-                'type' => 'password',
-                'rules' => 'required',
-            ],
-        ],
-        'submit' => 'Log in',
+        'items' => [
+            'default' => [
+                'title' => 'Please sign in',
+                'fields' => [
+                    [
+                        'name' => 'username',
+                        'label' => 'Username',
+                        'rules' => 'required',
+                    ],
+                    [
+                        'name' => 'password',
+                        'label' => 'Password',
+                        'type' => 'password',
+                        'rules' => 'required',
+                    ],
+                ],
+                'submit' => 'Log in',
+            ]
+        ]
     ];
 
     protected $before_create = ['encrypt_password'];
