@@ -21,7 +21,20 @@ class MY_Controller extends CI_Controller{
         $this->load->model('temp_model');
         $this->load->model('user_model');
         $this->init();
+        $this->only_login();
         $this->check_permission();
+    }
+
+    private function only_login(){
+        $no_login_required_page = [
+            'login/index'
+        ];
+        if(
+            !$this->temp_model->login() 
+            AND !in_array($this->router->get_uri_base(), $no_login_required_page)){
+            $this->alert->error("Please login first!");
+            redirect();
+        }
     }
 
     private function check_permission(){
