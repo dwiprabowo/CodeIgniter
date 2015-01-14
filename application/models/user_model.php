@@ -8,6 +8,7 @@ class User_Model extends MY_Model{
     protected $after_create = ['add_relations'];
 
     protected $after_get = ['get_relations'];
+    protected $after_update = ['update_relations'];
 
     protected $models = [
         'login',
@@ -71,6 +72,11 @@ class User_Model extends MY_Model{
         if(@$data->login_id){
             $data->login = $this->login_model->get($data->login_id);
         }
+        return $data;
+    }
+
+    function update_relations($data){
+        $this->login_model->update($data['updated']->login_id, $data['orig']);
         return $data;
     }
 

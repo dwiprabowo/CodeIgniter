@@ -21,7 +21,9 @@ class MY_Controller extends CI_Controller{
         $this->load->model('temp_model');
         $this->load->model('user_model');
         $this->init();
-        $this->only_login();
+        if(!$this->input->is_cli_request()){
+            $this->only_login();
+        }
         $this->check_permission();
     }
 
@@ -76,6 +78,10 @@ class MY_Controller extends CI_Controller{
                     'only_top' => TRUE,
                     'active' => TRUE,
                     'menus' => [
+                        'edit_login' => [
+                            'label' => 'Edit Login Info',
+                            'action' => 'user/login'
+                        ],
                         'logout' => [
                             'label' => 'Logout',
                             'action' => 'logout'

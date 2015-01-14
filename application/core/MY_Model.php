@@ -14,6 +14,7 @@ class MY_Model extends CI_Model{
     protected $after_create = [];
     protected $before_get = [];
     protected $after_get = [];
+    protected $after_update = [];
 
     private $validate = [];
 
@@ -62,6 +63,15 @@ class MY_Model extends CI_Model{
         $this->_temporary_return_type = $this->return_type;
         $this->init_form();
         $this->load_dependency_models($this->models);
+    }
+
+    public function set_form_rules($key, $value){
+        $template = $this->form['default'];
+        foreach ($this->form['items'][$template]['fields'] as $k => $v) {
+            if($v['name'] == $key){
+                $this->form['items'][$template]['fields'][$k]['rules'] = $value;
+            }
+        }
     }
 
     public function set_form_template($item_name = FALSE){
@@ -223,9 +233,20 @@ class MY_Model extends CI_Model{
             $data = $this->validate($data);
         }
         if($data !== FALSE){
+            $data = $this->trigger('before_update', $data);
+            $data_update = $this->generate_needed_data($data);
             $result = $this->db->where($this->primary_key, $primary_value)
-                        ->set($data)
+                        ->set($data_update)
                         ->update($this->_table);
+            if($result){
+                $this->trigger(
+                    'after_update'
+                    , [
+                        'orig' => $data,
+                        'updated' => $this->get($primary_value)
+                    ]
+                );
+            }
             return $result;
         }
         return FALSE;

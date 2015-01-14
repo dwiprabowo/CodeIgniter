@@ -124,7 +124,7 @@ class Bootstrap{
                 $autofocus_set = TRUE;
             }
             if($initial_data){
-                $value->value = $initial_data->{$value->name};
+                $value->value = @$initial_data->{$value->name};
             }
             $value->input_element = input_element($value->type, $value);
         }

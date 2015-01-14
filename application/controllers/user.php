@@ -4,7 +4,7 @@ class User extends MY_Controller{
 
 	protected $models = [
 		'user',
-		'administration'
+		'administration',
 	];
 
 	protected $menu = [
@@ -121,4 +121,26 @@ class User extends MY_Controller{
 		}
 		redirect('user/profile');
 	}
+
+	public function login_get(){
+		$user = $this->user_model->with('login')->get($this->temp_model->login());
+		$this->_set_data(
+			'user'
+			, $user
+		);
+	}
+	public function login_post($data){
+		$id = $this->temp_model->login();
+		$this->user_model->set_form_rules(
+			'username'
+			, "required|is_unique[users.username.id.$id]"
+		);
+		$result = $this->user_model->update($id, $data);
+		if($result){
+			$this->alert->success('Data updated!');
+			redirect('user');
+		}
+		redirect('user/login');
+	}
+
 }
