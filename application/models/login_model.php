@@ -34,7 +34,9 @@ class Login_Model extends MY_Model{
     protected $before_update = ['encrypt_password'];
 
     function encrypt_password($data){
-        $data['password'] = md5($data['password']);
+        if(@$data['password']){
+            $data['password'] = md5($data['password']);
+        }
         return $data;
     }
 
