@@ -121,5 +121,22 @@ define('EXIT_DATABASE', 8); // database error
 define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
+/*
+|--------------------------------------------------------------------------
+| Directories
+|--------------------------------------------------------------------------
+|
+*/
+define('DIR_CONTROLLERS', APPPATH.'controllers/');
+
+/*
+|--------------------------------------------------------------------------
+| Config name
+|--------------------------------------------------------------------------
+|
+*/
+define('TEMPLATE', 0);
+define('TWBS', 1);
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

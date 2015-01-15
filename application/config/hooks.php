@@ -48,6 +48,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
+$hook['post_controller'] = [
+    'class'     => 'AutoView',
+    'function'  => 'run',
+    'filename'  => 'auto_view.php',
+    'filepath'  => 'hooks',
+];
 
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */
