@@ -3,7 +3,8 @@
 	"name" : "codeigniter/framework",
 	"license": "MIT",
 	"require": {
-		"php": ">=5.2.4"
+		"php": ">=5.2.4",
+        "twbs/bootstrap": "3.3.*@dev"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"
