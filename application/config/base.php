@@ -2,6 +2,8 @@
 
 $config[TEMPLATE] = 'bootstrap';
 $config[TWBS] = [
-    "base_path" => "vendor/twbs/bootstrap/dist/"
+    "root_path" => "vendor/twbs/bootstrap/",
+    "dist" => "dist/",
+    "helper" => "twbs",
 ];
-$config['assets_img'] = ['png', 'jpeg'];
+$config['assets_img'] = ['png', 'jpeg', 'ico'];

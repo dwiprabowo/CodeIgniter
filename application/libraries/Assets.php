@@ -2,7 +2,10 @@
 
 class Assets{
 
-    private $dir   = 'assets/';
+    private $ci = null;
+
+    private $dir    = 'assets/';
+    private $dist   = FALSE;
     const THIRDPARTY_DIR = 'thirdparty/';
 
     const CSS   = 'css';
@@ -14,46 +17,22 @@ class Assets{
     var $thirdparty = NULL;
 
     function __construct($data = FALSE){
+        $this->ci =& get_instance();
         if($data){
             $this->build($data);
         }
-        $this->path = $this->dir;
-        $this->init_thirdparty();
     }
 
     private function build($data){
-        if(isset($data['base_path'])){
-            $this->dir = $data['base_path'];
+        if(isset($data['root_path'])){
+            $this->dir = $data['root_path'];
         }
-    }
-
-    function bulk($items){
-        foreach ($items as $item) {
-            echo $this->load($item->filename, $item->rpath);
+        if(isset($data['dist'])){
+            $this->dist = $data['dist'];
         }
-    }
-
-    function init_thirdparty(){
-        $this->thirdparty = new stdClass;
-        $this->thirdparty_inactivate();
-    }
-
-    function thirdparty($name){
-        $this->thirdparty_activate();
-        $this->thirdparty->name = strtolower($name);
-        $this->thirdparty->dir = $this->thirdparty->name.DIRECTORY_SEPARATOR;
-    }
-
-    function thirdparty_active(){
-        return $this->thirdparty->active;
-    }
-
-    function thirdparty_inactivate(){
-        $this->thirdparty->active = FALSE;
-    }
-
-    function thirdparty_activate(){
-        $this->thirdparty->active = TRUE;
+        if(isset($data['helper'])){
+            $this->ci->load->helper($data['helper']);
+        }
     }
 
     function load($filename, $path = FALSE){
@@ -63,14 +42,8 @@ class Assets{
         if($one_of_img_type){
             $type = self::IMG;
         }
-        if($this->thirdparty_active() AND $path === FALSE){
-            show_error('A thirdparty assets need to specify the path!');
-            die;
-        }
         if($path === FALSE){
             $this->{'cd_'.$type}();
-        }elseif(!$this->thirdparty_active()){
-            $this->{'cd_'.$type}($path);
         }else{
             $this->cd($path);
         }
@@ -94,23 +67,19 @@ class Assets{
     }
 
     function cd($rpath){
-        $thirdparty_path = '';
-        if($this->thirdparty_active()){
-            $thirdparty_path = self::THIRDPARTY_DIR.$this->thirdparty->dir;
-        }
-        $this->path = $this->dir.$thirdparty_path.$rpath.DIRECTORY_SEPARATOR;
+        $this->path = $this->dir.$rpath;
     }
 
     function cd_css($path = FALSE){
-        $this->cd(self::CSS.($path?rpath($path):''));
+        $this->cd($this->dist.self::CSS.rpath($path));
     }
 
     function cd_js($path = FALSE){
-        $this->cd(self::JS.($path?rpath($path):''));
+        $this->cd($this->dist.self::JS.rpath($path));
     }
 
     function cd_img($path = FALSE){
-        $this->cd(self::IMG.($path?rpath($path):''));
+        $this->cd($this->dist.self::IMG.rpath($path));
     }
 
 
