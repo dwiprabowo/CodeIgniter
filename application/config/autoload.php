@@ -112,7 +112,7 @@ $autoload['libraries'] = array('assets');
 |	$autoload['drivers'] = array('session', 'cache');
 */
 
-$autoload['drivers'] = array();
+$autoload['drivers'] = array('session');
 
 
 /*
@@ -124,7 +124,7 @@ $autoload['drivers'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('base', 'url', 'html');
+$autoload['helper'] = array('base', 'url', 'html', 'language');
 
 
 /*
@@ -140,7 +140,7 @@ $autoload['helper'] = array('base', 'url', 'html');
 |
 */
 
-$autoload['config'] = array('base');
+$autoload['config'] = array('base', 'country');
 
 
 /*
@@ -156,7 +156,7 @@ $autoload['config'] = array('base');
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array('words');
 
 
 /*

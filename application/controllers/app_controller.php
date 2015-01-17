@@ -11,6 +11,7 @@ abstract class App_Controller extends Base_Controller{
     }
 
     private function init(){
+        $this->output->enable_profiler($this->app->enable_profiler());
         $this->template(config_item(TEMPLATE));
         $this->load->library('assets', config_item(TWBS), 'twbs');
         $this->load->library('assets', config_item(JQUERY), 'jquery');

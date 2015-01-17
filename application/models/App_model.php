@@ -2,7 +2,7 @@
 
 class App_Model extends MY_Model{
 
-    private $lang = "en";
+    private $lang = "";
     private $viewport = [
         'width' => 'device-width',
         'initial-scale' => '1',
@@ -14,6 +14,7 @@ class App_Model extends MY_Model{
 Your description goes here ...
 EOD;
     private $title = "Codeigniter & Bootstrap";
+    private $enable_profiler = TRUE;
 
     function __construct(){
         parent::__construct();
@@ -21,6 +22,7 @@ EOD;
     }
 
     private function build(){
+        $this->lang = config_item('country')[config_item('language')];
         $this->viewport = implode(
             ', '
             , array_map(
@@ -49,6 +51,10 @@ EOD;
 
     public function title(){
         return $this->title;
+    }
+
+    public function enable_profiler(){
+        return $this->enable_profiler;
     }
 
     public function lang(){
