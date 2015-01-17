@@ -140,5 +140,13 @@ define('TEMPLATE', 0);
 define('TWBS', 1);
 define('JQUERY', 2);
 
+/*
+|--------------------------------------------------------------------------
+| Config name
+|--------------------------------------------------------------------------
+|
+*/
+define('LANG_TITLE', 0);
+define('LANG_DESCRIPTION', 1);
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

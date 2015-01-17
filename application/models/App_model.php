@@ -9,12 +9,9 @@ class App_Model extends MY_Model{
     ];
     private $x_ua_compatible_equiv = "IE=edge";
     private $author = "dwi.juli.prabowo@gmail.com";
-    private $description =
-<<<EOD
-Your description goes here ...
-EOD;
-    private $title = "Codeigniter & Bootstrap";
-    private $enable_profiler = TRUE;
+    private $description = LANG_DESCRIPTION;
+    private $title = LANG_TITLE;
+    private $enable_profiler = FALSE;
 
     function __construct(){
         parent::__construct();

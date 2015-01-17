@@ -156,7 +156,7 @@ $autoload['config'] = array('base', 'country');
 |
 */
 
-$autoload['language'] = array('words');
+$autoload['language'] = array('words', 'app');
 
 
 /*

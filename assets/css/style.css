@@ -16,9 +16,23 @@
 .float_right{
     float: right;
 }
+h1.title{
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .3);
+}
+.framework_img{
+    max-height: 72px;
+    max-width: 72px;
+}
+.front_plus_sign{
+    font-size: 3em;
+    position: relative;
+    top: 15px;
+    padding: 0 20px;
+}
 footer.main{
     width: 100%;
-    padding: 10px;
+    padding: 10px 30px;
     background: white;
     bottom: 0;
     right: 0;

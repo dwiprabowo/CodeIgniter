@@ -36,7 +36,7 @@ class Assets{
         }
     }
 
-    function load($filename, $path = FALSE){
+    function load_file($filename, $attributes = [], $path = FALSE){
         $type = explode('.', $filename);
         $original_type = $type = end($type);
         $one_of_img_type = in_array($type, config_item('assets_img'));
@@ -59,12 +59,21 @@ class Assets{
                     if($original_type === "ico"){
                         return link_tag($this->path.$filename, 'icon');
                     }
-                    return img($this->path.$filename);
+                    $data = $this->path.$filename;
+                    if($attributes){
+                        $data = ['src' => $this->path.$filename];
+                        $data = array_replace_recursive($data, $attributes);
+                    }
+                    return img($data);
                 break;
             default:
                 show_error('Unknow Assets Type!');
                 break;
         }
+    }
+
+    function load($filename, $path = FALSE){
+        return $this->load_file($filename, null, $path);
     }
 
     function cd($rpath){
