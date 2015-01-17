@@ -10,9 +10,9 @@
         <title><?=$app->title()?></title>
         <?=twbs('bootstrap.css')?>
         <?=twbs('starter-template.css', 'docs/examples/starter-template/')?>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <?=jquery('jquery.js', 'jquery/')?>
         <?=twbs('bootstrap.js')?>
+        <?=assets('style.css')?>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -51,5 +51,16 @@
                 </p>
             </div>
         </div>
+        <footer class="main position_fixed">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="footer_content">
+                        <div class="float_right">
+                            &copy;2014-<?=date('Y')?> <?=$app->title()?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>

@@ -21,6 +21,7 @@ class Assets{
         if($data){
             $this->build($data);
         }
+        $this->ci->load->helper('assets');
     }
 
     private function build($data){

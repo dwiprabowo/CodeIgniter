@@ -1,0 +1,22 @@
+.position_relative{
+    position: relative;
+}
+.position_absolute{
+    position: absolute;
+}
+.position_fixed{
+    position: fixed;
+}
+.footer_content{
+    overflow: auto;
+}
+.float_right{
+    float: right;
+}
+footer.main{
+    width: 100%;
+    padding: 10px;
+    background: white;
+    bottom: 0;
+    right: 0;
+}
