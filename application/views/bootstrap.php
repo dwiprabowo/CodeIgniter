@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<?=doctype('html5')?>
+<html lang="<?=$app->lang()?>">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <?=meta('X-UA-Compatible', $app->x_ua_compatible_equiv(), 'equiv');?>
+        <?=meta('viewport', $app->viewport())?>
+        <?=meta('description', $app->description())?>
+        <?=meta('author', $app->author())?>
         <?=twbs('favicon.ico', 'docs/')?>
-        <title>Starter Template for Bootstrap</title>
+        <title><?=$app->title()?></title>
         <?=twbs('bootstrap.css')?>
         <?=twbs('starter-template.css', 'docs/examples/starter-template/')?>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -31,7 +31,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+                    <a class="navbar-brand" href="#"><?=$app->title()?></a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">

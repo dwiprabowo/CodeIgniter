@@ -22,13 +22,4 @@ abstract class App_Controller extends Base_Controller{
         }
         return $this->template;
     }
-
-    public function data($key = FALSE, $value = FALSE){
-        if($key AND $value){
-            $this->data[$key] = $value;
-        }elseif($key){
-            return $this->data[$key];
-        }
-        return $this->data;
-    }
 }

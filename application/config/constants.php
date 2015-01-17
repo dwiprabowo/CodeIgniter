@@ -128,6 +128,7 @@ define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 |
 */
 define('DIR_CONTROLLERS', APPPATH.'controllers/');
+define('DIR_MODELS', APPPATH.'models/');
 
 /*
 |--------------------------------------------------------------------------
