@@ -1,3 +1,6 @@
+.font_bold{
+    font-weight: bold;
+}
 .font_serif{
     font-family: serif;
 }
@@ -21,8 +24,7 @@ h1.title{
     border-bottom: 1px solid rgba(0, 0, 0, .3);
 }
 .framework_img{
-    max-height: 72px;
-    max-width: 72px;
+    max-width: 50px;
 }
 .front_plus_sign{
     font-size: 3em;

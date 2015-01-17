@@ -89,5 +89,7 @@ $route['default_controller'] = 'Home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['tentang'] = 'halaman/Tentang';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

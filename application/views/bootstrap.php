@@ -26,7 +26,7 @@
                 <div class="col-sm-12">
                     <div class="footer_content">
                         <div class="float_right">
-                            &copy;2014-<?=date('Y')?> <?=anchor(site_url(), t($app->title()))?>
+                            &copy;2014-<?=date('Y')?> <strong><?=anchor(site_url(), t($app->title()))?></strong>
                         </div>
                     </div>
                 </div>

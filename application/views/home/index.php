@@ -10,5 +10,14 @@
             <span class="glyphicon glyphicon-plus front_plus_sign"></span>
             <?=assets('twbs-bootstrap.png', ['class' => 'framework_img'])?>
         </div>
+        <?=str_repeat('<br>', 2)?>
+        <div>
+            <a 
+                href="https://github.com/dwiprabowo/CodeIgniter/tree/base"
+                class="btn btn-primary btn-lg" 
+            >
+                Lihat kode di <strong><ins>Github</ins></strong>
+            </a>
+        </div>
     </div>
 </div>

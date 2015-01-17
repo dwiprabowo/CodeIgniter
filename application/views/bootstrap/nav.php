@@ -10,26 +10,40 @@
                 <span class="sr-only">Toggle navigation</span>
                 <?=str_repeat('<span class="icon-bar"></span>', 3)?>
             </button>
-            <a class="navbar-brand font_serif" href="<?=site_url()?>">
+            <a class="navbar-brand font_serif font_bold" href="<?=site_url()?>">
                 <?=t($app->title())?>
             </a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-                </ul>
-                </li>
+                <?php foreach($menu->items() as $k => $v): ?>
+                    <?php
+                        $have_menu = isset($v->menu);
+                    ?>
+                    <li class="<?=$have_menu?'dropdown':''?> <?=is_active($v->active)?>">
+                        <a 
+                            href="<?=site_url($v->action)?>"
+                            <?php if($have_menu): ?>
+                                class="dropdown-toggle"
+                                data-toggle="dropdown"
+                                role="button"
+                                aria-expanded="false"
+                            <?php endif; ?>
+                        >
+                            <?=$v->label?>
+                            <?php if($have_menu): ?>
+                                 <span class="caret"></span>
+                            <?php endif; ?>
+                        </a>
+                        <?php if(isset($v->menu)): ?>
+                            <ul class="dropdown-menu" role="menu">
+                                <?php foreach($v->menu as $_k => $_v): ?>
+                                    <li><a href="<?=$_v->action?>"><?=$_v->label?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>

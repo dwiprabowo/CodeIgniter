@@ -5,7 +5,7 @@ abstract class Base_Controller extends CI_Controller{
     const MODEL_NAME_TEMPLATE = '%_model';
 
     private $models = [
-        'app'
+        'app',
     ];
 
     function __construct(){
@@ -22,7 +22,7 @@ abstract class Base_Controller extends CI_Controller{
     }
 
     private function load_models(){
-        $this->models = array_replace_recursive(
+        $this->models = array_merge(
             $this->models
             , $this->_models()
         );
