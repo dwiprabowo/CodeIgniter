@@ -137,6 +137,7 @@ define('DIR_CONTROLLERS', APPPATH.'controllers/');
 */
 define('TEMPLATE', 0);
 define('TWBS', 1);
+define('JQUERY', 2);
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
