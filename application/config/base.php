@@ -38,14 +38,6 @@ $config['menu'] = [
                     'label' => 'Dasar Aplikasi',
                     'action' => 'dokumentasi/dasar_aplikasi',
                 ],
-                'database_migration' => [
-                    'label' => 'Migrasi Database',
-                    'action' => 'dokumentasi/migrasi_database',
-                ],
-                'generating_crud' => [
-                    'label' => 'Pembuatan CRUD',
-                    'action' => 'dokumentasi/pembuatan_crud',
-                ],
             ]
         ],
     ];

@@ -89,7 +89,7 @@ $route['default_controller'] = 'Sample';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['tentang'] = '_sample/Tentang';
+require_once DIR_ROUTES.'sample.php';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

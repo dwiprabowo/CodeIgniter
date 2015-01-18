@@ -38,7 +38,7 @@
                         <?php if(isset($v->menu)): ?>
                             <ul class="dropdown-menu" role="menu">
                                 <?php foreach($v->menu as $_k => $_v): ?>
-                                    <li><a href="<?=$_v->action?>"><?=$_v->label?></a></li>
+                                    <li><a href="<?=site_url($_v->action)?>"><?=$_v->label?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
