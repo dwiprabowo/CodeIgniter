@@ -20,6 +20,7 @@ class Migrate extends CLI_Controller{
         color('cyan', 'bold');
         echo "\n";
         echo 'migrate cli run successfully, exiting...';
+        echo "\n";
         echo str_repeat("-", self::CLI_VIEW_WIDTH);
         echo "\n";
     }
