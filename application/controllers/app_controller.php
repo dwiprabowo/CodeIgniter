@@ -17,7 +17,7 @@ abstract class App_Controller extends Base_Controller{
     }
 
     private function init(){
-        $this->load->library('session');
+        $this->load->driver('session');
         $this->output->enable_profiler($this->app->enable_profiler());
         $this->template(config_item(TEMPLATE));
         $this->load->library('twbs', config_item(TWBS));
