@@ -1,6 +1,6 @@
 <?php
 
-class Home extends App_Controller{
+class Sample extends App_Controller{
 
     public function index(){
     }
