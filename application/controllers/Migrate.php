@@ -4,6 +4,7 @@ class Migrate extends CLI_Controller{
 
     function __construct(){
         parent::__construct();
+        $this->load->helper('database');
         $this->load->library('migration');
         color('cyan', 'bold');
         println();
