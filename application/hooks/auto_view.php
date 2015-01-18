@@ -9,7 +9,7 @@ class AutoView{
     }
 
     function run(){
-        if($this->ci->input->is_cli_input()){
+        if($this->ci->input->is_cli_request()){
             return;
         }
         $template = $this->ci->template();
