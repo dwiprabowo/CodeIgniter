@@ -7,44 +7,50 @@ class Migrate extends CLI_Controller{
         $this->load->helper('database');
         $this->load->library('migration');
         color('cyan', 'bold');
-        println();
-        printl();
-        println("running migrate cli {$this->router->class}-{$this->router->method} ...");
-        println();
+        echo "\n";
+        echo str_repeat("-", self::CLI_VIEW_WIDTH);
+        echo "\n";
+        echo "running migrate cli {$this->router->class}-{$this->router->method} ...";
+        echo "\n";
+        echo "\n";
         register_shutdown_function(array($this, 'end_message'));
     }
 
     function end_message(){
         color('cyan', 'bold');
-        println();
-        println('migrate cli run successfully, exiting...');
-        printl();
-        println();
+        echo "\n";
+        echo 'migrate cli run successfully, exiting...';
+        echo str_repeat("-", self::CLI_VIEW_WIDTH);
+        echo "\n";
     }
 
     public function index(){
         color('green', 'bold');
-        println('version before ...');
+        echo 'version before ...';
+        echo "\n";
         $this->show_info();
         if(!$this->migration->latest()){
             show_error($this->migration->error_string());
         }
-        println();
+        echo "\n";
         color('green', 'bold');
-        println('version after ...');
+        echo 'version after ...';
+        echo "\n";
         $this->show_info();
     }
 
     public function version($number=0){
         color('green', 'bold');
-        println('version before ...');
+        echo 'version before ...';
+        echo "\n";
         $this->show_info();
         if($this->migration->version($number) === FALSE){
             show_error($this->migration->error_string());
         }
-        println();
+        echo "\n";
         color('green', 'bold');
-        println('version after ...');
+        echo 'version after ...';
+        echo "\n";
         $this->show_info();
     }
 
@@ -58,10 +64,12 @@ class Migrate extends CLI_Controller{
         $query = $this->db->query($query);
         $values = $query->result_object();
         color('yellow', 'bold');
-        println('Table List:');
+        echo 'Table List:';
+        echo "\n";
         color('yellow');
         foreach($values as $v){
-            println(" - ".$v->name);
+            echo " - ".$v->name;
+            echo "\n";
         }
         color_reset();
     }
@@ -71,9 +79,11 @@ class Migrate extends CLI_Controller{
         $query = $this->db->query($query);
         $version = $query->row()->version;
         color('red');
-        printl();
+        echo str_repeat("-", self::CLI_VIEW_WIDTH);
+        echo "\n";
         printf("| ".color('red', 'bold', TRUE)."current version is: %-54s ".color('red', 'reg', TRUE)."|\n", $version);
-        printl();
+        echo str_repeat("-", self::CLI_VIEW_WIDTH);
+        echo "\n";
         color_reset();
     }
 }
