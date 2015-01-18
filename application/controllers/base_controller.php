@@ -12,9 +12,6 @@ abstract class Base_Controller extends CI_Controller{
         parent::__construct();
         $this->load_models();
         $this->data('app', $this->app);
-        if(!$this->session->userdata('language')){
-            $this->session->set_userdata('language', $this->app->lang());
-        }
     }
 
     public function _models(){

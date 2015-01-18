@@ -112,7 +112,7 @@ $autoload['libraries'] = array('assets');
 |	$autoload['drivers'] = array('session', 'cache');
 */
 
-$autoload['drivers'] = array('session');
+$autoload['drivers'] = array();
 
 
 /*
