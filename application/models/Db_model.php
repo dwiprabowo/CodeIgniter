@@ -1,6 +1,6 @@
 <?php
 
-class DB_model extends MY_Model
+class Db_model extends MY_Model
 {
     protected $_table;
     protected $primary_key = 'id';
