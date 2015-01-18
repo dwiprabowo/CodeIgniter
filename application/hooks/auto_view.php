@@ -1,16 +1,18 @@
 <?php
 
 class AutoView{
-    public function run(){
-        $CI =& get_instance();
-        if(@$CI->bootstrap){
-            $CI->bootstrap->build();
+
+    var $ci = null;
+
+    function __construct(){
+        $this->ci =& get_instance();
+    }
+
+    function run(){
+        $template = $this->ci->template();
+        $data = $this->ci->data();
+        if($template){
+            $this->ci->load->view($template, $data);
         }
-        if($CI->input->is_cli_request() || is_cli_request()){
-            return FALSE;
-        }
-        $CI->_build();
-        $template = $CI->_get_data('base_template');
-        $CI->load->view($template, $CI->_get_data());
     }
 }

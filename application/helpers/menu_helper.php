@@ -1,18 +1,18 @@
 <?php
 
-if(!function_exists('is_currently_active')){
-	function is_currently_active($list = FALSE){
-		if(!$list){
-			return;
-		}
-		$CI =& get_instance();
-		foreach ($list as $k => $v) {
-			$segment = explode('/', $v);
-			if(count($segment) == 1){
-				if($segment[0] == $CI->router->class){
-					return 'active';
-				}
-			}
-		}
-	}
+if(!function_exists('is_active')){
+    function is_active($active){
+        $CI =& get_instance();
+        if(is_object($active)){
+            $active = object_to_array($active);
+        }
+        if(is_array($active)){
+            foreach($active as $k => $v){
+                if(strtolower($CI->router->class) === $v){
+                    return 'active';
+                }
+            }
+        }
+        return "";
+    }
 }

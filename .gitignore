@@ -8,25 +8,12 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
-preconfig.php
-.htaccess
-.buildpath
-.project
-.settings/org.eclipse.php.core.prefs
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+/vendor/
+/nbproject/
 
-assets/temp/
-.settings/.jsdtscope
-.settings/org.eclipse.wst.common.project.facet.core.xml
-.settings/org.eclipse.wst.jsdt.ui.superType.container
-.settings/org.eclipse.wst.jsdt.ui.superType.name
-
-assets/images/profile
-
-*.swp
-*.swo
-
-assets/upload/
-.idea
-application/temp/
-*.sublime-project
-*.sublime-workspace
+*.sublime-*
+components/
