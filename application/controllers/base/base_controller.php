@@ -4,25 +4,19 @@ abstract class Base_Controller extends CI_Controller{
 
     const MODEL_NAME_TEMPLATE = '%_model';
 
-    private $models = [
-        'base/app',
-    ];
+    private $models = ["base/app"];
 
     function __construct(){
         parent::__construct();
+        $this->init();
+    }
+
+    private function init(){
         $this->load_models();
         $this->data('app', $this->app);
     }
 
-    public function _add_models(){
-        return [];
-    }
-
     private function load_models(){
-        $this->models = array_merge(
-            $this->models
-            , $this->_add_models()
-        );
         if($this->models === FALSE){
             return;
         }

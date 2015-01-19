@@ -4,13 +4,6 @@ abstract class App_Controller extends Base_Controller{
 
     private $template = FALSE;
     private $data = [];
-    protected $model = [];
-
-    public function _add_models(){
-        $models = ['base/menu'];
-        $models = array_merge($models, $this->model);
-        return $models;
-    }
 
     function __construct(){
         parent::__construct();
@@ -18,27 +11,29 @@ abstract class App_Controller extends Base_Controller{
     }
 
     private function init(){
-        $this->load->driver('session');
         $this->output->enable_profiler($this->app->enable_profiler());
-        $this->template(config_item(TEMPLATE));
-        $this->load->library('twbs', config_item(TWBS));
-        $this->load->library('assets', config_item(JQUERY), 'jquery');
-        $this->data(
-            'view'
-            , strtolower(
-                $this->router->directory
-                .$this->router->class
-                .DIRECTORY_SEPARATOR
-                .$this->router->method
-            )
-        );
-        $this->data(
-            'menu'
-            , $this->menu
-        );
+        $this->_template(config_item(TEMPLATE));
+        $this->init_web_resources();
+        $this->data('view', $this->view());
     }
 
-    public function template($name = FALSE){
+    private function init_web_resources(){
+        $this->load->driver('session');
+        $this->load->library('assets');
+        $this->load->library('twbs', config_item(TWBS));
+        $this->load->library('assets', config_item(JQUERY), 'jquery');
+    }
+
+    private function view(){
+        $value = $this->router->directory;
+        $value .= $this->router->class;
+        $value .= DIRECTORY_SEPARATOR;
+        $value .= $this->router->method;
+        $value = strtolower($value);
+        return $value;
+    }
+
+    public function _template($name = FALSE){
         if($name){
             $this->template = $name;
         }

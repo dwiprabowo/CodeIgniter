@@ -12,7 +12,7 @@ class AutoView{
         if($this->ci->input->is_cli_request()){
             return;
         }
-        $template = $this->ci->template();
+        $template = $this->ci->_template();
         $data = $this->ci->data();
         if($template){
             $this->ci->load->view($template, $data);

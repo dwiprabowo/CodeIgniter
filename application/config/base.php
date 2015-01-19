@@ -15,29 +15,3 @@ $config[JQUERY] = [
 ];
 
 $config['assets_img'] = ['png', 'jpeg', 'ico'];
-
-
-/*
-    Sample menu, change the content of menu
-*/
-$config['menu'] = [
-        'about_app' => [
-            'label' => 'Tentang',
-            'action' => 'tentang',
-            'active' => [
-                'tentang'
-            ],
-        ],
-        'documentations' => [
-            'label' => 'Dokumentasi',
-            'active' => [
-                'dokumentasi'
-            ],
-            'menu' => [
-                'basic' => [
-                    'label' => 'Dasar Aplikasi',
-                    'action' => 'dokumentasi/dasar_aplikasi',
-                ],
-            ]
-        ],
-    ];

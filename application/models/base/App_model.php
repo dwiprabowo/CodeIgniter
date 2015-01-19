@@ -2,15 +2,15 @@
 
 class App_Model extends MY_Model{
 
-    private $lang = "";
+    private $lang = "id";
     private $viewport = [
         'width' => 'device-width',
         'initial-scale' => '1',
     ];
     private $x_ua_compatible_equiv = "IE=edge";
     private $author = "dwi.juli.prabowo@gmail.com";
-    private $description = LANG_DESCRIPTION;
-    private $title = LANG_TITLE;
+    private $description = "description here...";
+    private $title = "App";
     private $enable_profiler = FALSE;
 
     function __construct(){
@@ -19,7 +19,6 @@ class App_Model extends MY_Model{
     }
 
     private function build(){
-        $this->lang = config_item('country')[config_item('language')];
         $this->viewport = implode(
             ', '
             , array_map(
