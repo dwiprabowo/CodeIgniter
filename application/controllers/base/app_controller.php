@@ -4,16 +4,17 @@ abstract class App_Controller extends Base_Controller{
 
     private $template = FALSE;
     private $data = [];
+    protected $model = [];
+
+    public function _add_models(){
+        $models = ['base/menu'];
+        $models = array_merge($models, $this->model);
+        return $models;
+    }
 
     function __construct(){
         parent::__construct();
         $this->init();
-    }
-
-    public function _models(){
-        return [
-            'menu'
-        ];
     }
 
     private function init(){

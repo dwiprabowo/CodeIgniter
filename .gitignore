@@ -17,3 +17,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 *.sublime-*
 components/
+
+*.swp
+
+application/controllers/Tes.php
+application/models/Tes_model.php

@@ -1,5 +1,6 @@
 <?php
 
-include_once DIR_MODELS.'base_model.php';
-include_once DIR_MODELS.'App_model.php';
-include_once DIR_MODELS.'Menu_model.php';
+include_once DIR_MODELS_BASE.'base_model.php';
+include_once DIR_MODELS_BASE.'App_model.php';
+include_once DIR_MODELS_BASE.'Db_model.php';
+include_once DIR_MODELS_BASE.'Menu_model.php';

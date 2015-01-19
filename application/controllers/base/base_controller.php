@@ -5,7 +5,7 @@ abstract class Base_Controller extends CI_Controller{
     const MODEL_NAME_TEMPLATE = '%_model';
 
     private $models = [
-        'app',
+        'base/app',
     ];
 
     function __construct(){
@@ -14,14 +14,14 @@ abstract class Base_Controller extends CI_Controller{
         $this->data('app', $this->app);
     }
 
-    public function _models(){
+    public function _add_models(){
         return [];
     }
 
     private function load_models(){
         $this->models = array_merge(
             $this->models
-            , $this->_models()
+            , $this->_add_models()
         );
         if($this->models === FALSE){
             return;
@@ -32,8 +32,10 @@ abstract class Base_Controller extends CI_Controller{
     }
 
     private function load_model($name){
+        $names = explode('/', $name);
+        $base_name = end($names);
         $model_name = str_replace('%', $name, self::MODEL_NAME_TEMPLATE);
-        $this->load->model($model_name, $name);
+        $this->load->model($model_name, $base_name);
     }
 
     public function data($key = FALSE, $value = FALSE){
