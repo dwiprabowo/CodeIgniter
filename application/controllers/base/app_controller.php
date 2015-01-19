@@ -45,11 +45,16 @@ abstract class App_Controller extends Base_Controller{
         $this->data('view', $this->view());
     }
 
+    public function _build(){
+        $this->_build_alert();
+    }
+
     private function init_web_resources(){
         $this->load->driver('session');
         $this->load->library('assets');
         $this->load->library('twbs', config_item(TWBS));
         $this->load->library('assets', config_item(JQUERY), 'jquery');
+        $this->load->library('alert');
     }
 
     private function view(){
@@ -67,4 +72,32 @@ abstract class App_Controller extends Base_Controller{
         }
         return $this->template;
     }
+
+    private function _build_alert(){
+        $alerts = [];
+        if(@$this->session->flashdata('alert')){
+            $alerts[] = $this->session->flashdata('alert');
+        }
+        if(@$this->alert->items){
+            foreach($this->alert->items as $item){
+                $alerts[] = $item;
+            }
+        }
+        foreach($alerts as $k => $v){
+            if($v){
+                switch($alerts[$k]['type']){
+                    case 'error':
+                        $alerts[$k]['label'] = 'danger';
+                    break;
+                    case 'success':
+                        $alerts[$k]['label'] = 'success';
+                    break;
+                }
+            }
+        }
+        if($alerts){
+            $this->data('alerts', $alerts);
+        }
+    }
+
 }

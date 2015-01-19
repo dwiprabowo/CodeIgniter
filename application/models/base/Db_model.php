@@ -555,6 +555,7 @@ class Db_model extends Form_Model
                 }
                 else
                 {
+                    ialert_error('Error validating the form!');
                     return FALSE;
                 }
             }

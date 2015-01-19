@@ -34,5 +34,6 @@
                 </div>
             </div>
         </footer>
+        <?php $this->load->view('bootstrap/alert') ?>
     </body>
 </html>

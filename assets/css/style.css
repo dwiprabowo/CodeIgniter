@@ -39,3 +39,20 @@ footer.main{
     bottom: 0;
     right: 0;
 }
+
+div#aqsara_alert_wrapper{
+    position: fixed;
+    top: 80px;
+    right: 2%;
+    width: 98%;
+}
+div#aqsara_alert_wrapper > div{
+    overflow: auto;
+}
+div#aqsara_alert_wrapper > div > div.alert.aqsara_alert{
+    float: right;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    position: relative;
+    right: 0;
+}
