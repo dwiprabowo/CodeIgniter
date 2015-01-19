@@ -1,5 +1,14 @@
 <?php
 
+if(!function_exists('string_contain')){
+    function string_contain($subject, $contain){
+        if(strpos($subject, $contain) !== FALSE){
+            return TRUE;
+        }
+        return FALSE;
+    }
+}
+
 if(!function_exists('array_to_object')){
     function array_to_object($d){
         return is_array($d)?(object) array_map(__FUNCTION__, $d):$d;
