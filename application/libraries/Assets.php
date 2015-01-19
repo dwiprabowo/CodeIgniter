@@ -2,7 +2,7 @@
 
 class Assets{
 
-    private $ci = null;
+    protected $ci = null;
 
     private $dir    = 'assets/';
     private $dist   = FALSE;

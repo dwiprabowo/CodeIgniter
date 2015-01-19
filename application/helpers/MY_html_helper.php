@@ -142,8 +142,8 @@ if(!function_exists('input_element_content')){
             case INPUT_TYPE_TEXT:
             case INPUT_TYPE_PASSWORD:
             case INPUT_TYPE_TEXTAREA:
-                if(@$data['name']){
-                    $result .= " name='{$data['name']}'";
+                if(@$data['field']){
+                    $result .= " name='{$data['field']}'";
                 }
                 if(@$data['id']){
                     $result .= " id='{$data['id']}'";
@@ -151,28 +151,28 @@ if(!function_exists('input_element_content')){
                 if(@$data['class']){
                     $result .= " class='{$data['class']}'";
                 }
-                if(@$data['error'] AND @$data['name'] ){
-                    $result .= " aria-describedby='{$data['name']}_error'";
+                if(@$data['error'] AND @$data['field'] ){
+                    $result .= " aria-describedby='{$data['field']}_error'";
                 }
                 if(@$data['autofocus']){
                     $result .= " autofocus";
                 }
-                if(@$data['value'] AND @$data['name']){
+                if(@$data['value'] AND @$data['field']){
                     if($type === INPUT_TYPE_TEXTAREA){
                         $result .= ">";
                     }
                     $value = @$data['value']?:NULL;
-                    $value = set_value($data['name'], $value);
+                    $value = set_value($data['field'], $value);
                     if($type === INPUT_TYPE_TEXTAREA){
                         $result .= $value;
                     }else{
                         $result .= " value='$value'";
                     }
-                }elseif(@$data['name']){
+                }elseif(@$data['field']){
                     if($type === INPUT_TYPE_TEXTAREA){
                         $result .= ">";
                     }
-                    $value = set_value($data['name']);
+                    $value = set_value($data['field']);
                     if($type === INPUT_TYPE_TEXTAREA){
                         $result .= $value;
                     }else{

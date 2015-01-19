@@ -108,7 +108,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'indonesian';
+$config['language']	= 'english';
 
 /*
 |--------------------------------------------------------------------------

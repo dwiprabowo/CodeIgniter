@@ -1,6 +1,6 @@
 <?php
 
-class Db_model extends MY_Model
+class Db_model extends Form_Model
 {
     protected $_table;
     protected $primary_key = 'id';
@@ -534,6 +534,7 @@ class Db_model extends MY_Model
 
     public function validate($data)
     {
+        $this->build_validator();
         if($this->skip_validation)
         {
             return $data;

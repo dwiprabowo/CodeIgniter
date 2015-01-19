@@ -14,7 +14,6 @@ abstract class Base_Controller extends CI_Controller{
     private function init(){
         array_push($this->models, "base/app");
         $this->load_models();
-        $this->data('app', $this->app);
     }
 
     private function load_models(){
@@ -34,6 +33,7 @@ abstract class Base_Controller extends CI_Controller{
         }
         $model_name = str_replace('%', $name, self::MODEL_NAME_TEMPLATE);
         $this->load->model($model_name, $base_name);
+        $this->data($base_name, $this->$base_name);
     }
 
     public function data($key = FALSE, $value = FALSE){

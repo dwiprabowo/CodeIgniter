@@ -5,15 +5,43 @@ abstract class App_Controller extends Base_Controller{
     private $template = FALSE;
     private $data = [];
 
+    private $allowed_http_methods = ['get', 'post'];
+
     function __construct(){
         parent::__construct();
         $this->init();
+    }
+
+    private function init_rest(){
+        $this->request = new stdClass;
+        $this->request->method = $this->detect_method();
+    }
+
+    private function detect_method(){
+        $method = strtolower($this->input->server('REQUEST_METHOD'));
+        if(in_array($method, $this->allowed_http_methods)){
+            return $this->method = $method;
+        }
+    }
+
+    public function _remap($method, $arguments){
+        $controller_method = $method.'_'.$this->request->method;
+        if(strtolower($this->request->method) == 'post'){
+            $arguments[] = $this->input->post();
+        }
+        if(method_exists($this, $controller_method)){
+            return call_user_func_array([$this, $controller_method], $arguments);
+        }elseif(method_exists($this, $method)){
+            return call_user_func_array([$this, $method], $arguments);
+        }
+        show_404();
     }
 
     private function init(){
         $this->output->enable_profiler($this->app->enable_profiler());
         $this->_template(config_item(TEMPLATE));
         $this->init_web_resources();
+        $this->init_rest();
         $this->data('view', $this->view());
     }
 

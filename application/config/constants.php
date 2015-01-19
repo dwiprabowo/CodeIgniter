@@ -146,11 +146,14 @@ define('JQUERY', 2);
 
 /*
 |--------------------------------------------------------------------------
-| Config name
+| Form constants
 |--------------------------------------------------------------------------
 |
 */
-define('LANG_TITLE', 0);
-define('LANG_DESCRIPTION', 1);
+define('INPUT_TYPE_TEXT', 'text');
+define('INPUT_TYPE_PASSWORD', 'password');
+define('INPUT_TYPE_TEXTAREA', 'textarea');
+define('INPUT_TYPE_BOOL', 'bool');
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

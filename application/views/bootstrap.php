@@ -18,7 +18,9 @@
         <?php $this->load->view(twbs_nav()) ?>
         <div class="container">
             <div class="starter-template">
-                <?php $this->load->view($view) ?>
+                <div class="text-left">
+                    <?php $this->load->view($view) ?>
+                </div>
             </div>
         </div>
         <footer class="main position_fixed">

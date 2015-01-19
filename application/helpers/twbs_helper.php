@@ -13,3 +13,10 @@ if(!function_exists('twbs_nav')){
         return $CI->twbs->nav();
     }
 }
+
+if(!function_exists('twbs_form')){
+    function twbs_form($model){
+        $CI =& get_instance();
+        return $CI->twbs->form($model);
+    }
+}
