@@ -10,6 +10,8 @@ abstract class App_Controller extends Base_Controller{
     function __construct(){
         parent::__construct();
         $this->init();
+        array_push($this->models, "base/menu");
+        $this->load_models();
     }
 
     private function init_rest(){

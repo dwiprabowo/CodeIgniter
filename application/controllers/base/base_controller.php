@@ -19,7 +19,7 @@ abstract class Base_Controller extends CI_Controller{
         $this->load_models();
     }
 
-    private function load_models(){
+    protected function load_models(){
         if($this->models === FALSE){
             return;
         }
