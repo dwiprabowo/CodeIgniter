@@ -28,7 +28,18 @@ class Menu_model extends MY_Model{
         }
     }
 
+    function disable(){
+        $this->disabled = TRUE;
+    }
+
+    function enable(){
+        $this->disabled = FALSE;
+    }
+
     public function items(){
-        return array_to_object($this->items);
+        if(!$this->disabled){
+            return array_to_object($this->items);
+        }
+        return FALSE;
     }
 }
