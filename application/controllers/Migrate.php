@@ -12,47 +12,46 @@ class Migrate extends CLI_Controller{
         echo "\n";
         echo "running migrate cli {$this->router->class}-{$this->router->method} ...";
         echo "\n";
+        $this->check_info('current');
+        color('green', 'bold');
+        echo str_repeat("-", self::CLI_VIEW_WIDTH);
         echo "\n";
+        color_reset();
         register_shutdown_function(array($this, 'end_message'));
     }
 
     function end_message(){
-        color('cyan', 'bold');
+        color('green', 'bold');
+        echo str_repeat("-", self::CLI_VIEW_WIDTH);
         echo "\n";
+        color_reset();
+        $this->check_info("after execution");
+        color('cyan', 'bold');
         echo 'migrate cli run successfully, exiting...';
         echo "\n";
         echo str_repeat("-", self::CLI_VIEW_WIDTH);
         echo "\n";
     }
 
-    public function index(){
-        color('green', 'bold');
-        echo 'version before ...';
+    function check_info($label){
+        color_reset();
+        echo "\n";
+        echo "$label database info ...";
         echo "\n";
         $this->show_info();
+        echo "\n";
+    }
+
+    public function index(){
         if(!$this->migration->latest()){
             show_error($this->migration->error_string());
         }
-        echo "\n";
-        color('green', 'bold');
-        echo 'version after ...';
-        echo "\n";
-        $this->show_info();
     }
 
     public function version($number=0){
-        color('green', 'bold');
-        echo 'version before ...';
-        echo "\n";
-        $this->show_info();
         if($this->migration->version($number) === FALSE){
             show_error($this->migration->error_string());
         }
-        echo "\n";
-        color('green', 'bold');
-        echo 'version after ...';
-        echo "\n";
-        $this->show_info();
     }
 
     private function show_info(){
@@ -61,13 +60,14 @@ class Migrate extends CLI_Controller{
     }
 
     public function check_available_tables($print = TRUE){
-        $query = "SELECT table_name AS name FROM information_schema.tables WHERE table_schema = DATABASE()";
+        $query = "SELECT table_name AS name 
+            FROM information_schema.tables 
+            WHERE table_schema = DATABASE()
+        ";
         $query = $this->db->query($query);
         $values = $query->result_object();
-        color('yellow', 'bold');
         echo 'Table List:';
         echo "\n";
-        color('yellow');
         foreach($values as $v){
             echo " - ".$v->name;
             echo "\n";
@@ -79,10 +79,9 @@ class Migrate extends CLI_Controller{
         $query = "SELECT * FROM migrations";
         $query = $this->db->query($query);
         $version = $query->row()->version;
-        color('red');
         echo str_repeat("-", self::CLI_VIEW_WIDTH);
         echo "\n";
-        printf("| ".color('red', 'bold', TRUE)."current version is: %-54s ".color('red', 'reg', TRUE)."|\n", $version);
+        printf("| ".color('red', 'bold', TRUE)."current version is: %-54s ".color_reset(TRUE)."|\n", $version);
         echo str_repeat("-", self::CLI_VIEW_WIDTH);
         echo "\n";
         color_reset();
