@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"require": {
 		"php": ">=5.2.4",
-        "twbs/bootstrap": "3.3.*@dev",
+        "twbs/bootstrap": "3.3.1",
         "components/jquery": "1.11.1"
 	},
 	"require-dev": {
