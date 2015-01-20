@@ -8,6 +8,7 @@ abstract class CLI_Controller extends Base_Controller{
         parent::__construct();
         if(!$this->input->is_cli_request()){
             echo "You're not accessing via CLI. exiting...\n";
+            die;
         }
         $this->load->helper('cli');
     }
