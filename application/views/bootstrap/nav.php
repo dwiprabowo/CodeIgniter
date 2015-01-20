@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <?php if(isset($menu)): ?>
+            <?php if($menu->items() !== FALSE): ?>
                 <button 
                     type="button" 
                     class="navbar-toggle collapsed" 
@@ -19,38 +19,40 @@
         <?php if(isset($menu)): ?>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <?php foreach($menu->items() as $k => $v): ?>
-                        <?php
-                            $have_menu = isset($v->items);
-                        ?>
-                        <li class="<?=$have_menu?'dropdown':''?> <?=is_active($v->active)?>">
-                            <a 
-                                href="<?=site_url($v->action)?>"
+                    <?php if($menu->items() !== FALSE): ?>
+                        <?php foreach($menu->items() as $k => $v): ?>
+                            <?php
+                                $have_menu = isset($v->items);
+                            ?>
+                            <li class="<?=$have_menu?'dropdown':''?> <?=is_active($v->active)?>">
+                                <a 
+                                    href="<?=site_url($v->action)?>"
+                                    <?php if($have_menu): ?>
+                                        class="dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        role="button"
+                                        aria-expanded="false"
+                                    <?php endif; ?>
+                                >
+                                    <?=$v->label?>
+                                    <?php if($have_menu): ?>
+                                         <span class="caret"></span>
+                                    <?php endif; ?>
+                                </a>
                                 <?php if($have_menu): ?>
-                                    class="dropdown-toggle"
-                                    data-toggle="dropdown"
-                                    role="button"
-                                    aria-expanded="false"
+                                    <ul class="dropdown-menu" role="menu">
+                                        <?php foreach($v->items as $_k => $_v): ?>
+                                            <li>
+                                                <a href="<?=site_url($_v->action)?>">
+                                                    <?=$_v->label?>
+                                                </a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
                                 <?php endif; ?>
-                            >
-                                <?=$v->label?>
-                                <?php if($have_menu): ?>
-                                     <span class="caret"></span>
-                                <?php endif; ?>
-                            </a>
-                            <?php if($have_menu): ?>
-                                <ul class="dropdown-menu" role="menu">
-                                    <?php foreach($v->items as $_k => $_v): ?>
-                                        <li>
-                                            <a href="<?=site_url($_v->action)?>">
-                                                <?=$_v->label?>
-                                            </a>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php endif; ?>
-                        </li>
-                    <?php endforeach; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </ul>
             </div>
         <?php endif; ?>
