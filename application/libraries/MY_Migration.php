@@ -10,6 +10,24 @@ class MY_Migration extends CI_Migration{
         return $this->_get_version();
     }
 
+    protected function show_migration_method_info($method){
+        if(!is_cli_request()){
+            return;
+        }
+        echo $method."grading database - please wait ... ";
+        echo "\n";
+    }
+
+    protected function show_migration_progress($number, $file){
+        if(!is_cli_request()){
+            return;
+        }
+        $name = 
+            ucfirst(strtolower($this->_get_migration_name(basename($file, '.php'))));
+        echo "... $number - $name ... ";
+        echo "\n";
+    }
+
     public function version($target_version)
     {
         $current_version = $this->_get_version();
@@ -18,11 +36,13 @@ class MY_Migration extends CI_Migration{
         }else{
             $target_version = (string) $target_version;
         }
+
         $migrations = $this->find_migrations();
         if($target_version > 0 && ! isset($migrations[$target_version])){
             $this->_error_string = sprintf($this->lang->line('migration_not_found'), $target_version);
             return FALSE;
         }
+
         if($target_version == $current_version){
             $this->_error_string = sprintf(
                 "target version and current version is same..."
@@ -35,46 +55,68 @@ class MY_Migration extends CI_Migration{
             $method = 'down';
             krsort($migrations);
         }
-        if (empty($migrations))
-        {
+
+        $this->show_migration_method_info($method);
+
+        if(empty($migrations)){
             return TRUE;
         }
         $previous = FALSE;
-        foreach ($migrations as $number => $file)
-        {
-            if ($this->_migration_type === 'sequential' && $previous !== FALSE && abs($number - $previous) > 1)
-            {
+        foreach($migrations as $number => $file){
+            if(
+                $this->_migration_type === 'sequential' 
+                AND $previous !== FALSE AND abs($number - $previous) > 1
+            ){
                 $this->_error_string = sprintf($this->lang->line('migration_sequence_gap'), $number);
                 return FALSE;
             }
             include_once($file);
-            $class = 'Migration_'.ucfirst(strtolower($this->_get_migration_name(basename($file, '.php'))));
-            if ( ! class_exists($class, FALSE))
-            {
+            $migration_name = 
+                ucfirst(strtolower($this->_get_migration_name(basename($file, '.php'))));
+            $class = 'Migration_'.$migration_name;
+            if(!class_exists($class, FALSE)){
                 $this->_error_string = sprintf($this->lang->line('migration_class_doesnt_exist'), $class);
                 return FALSE;
             }
             $previous = $number;
-            if (
-                ($method === 'up'   && $number > $current_version && $number <= $target_version) OR
-                ($method === 'down' && $number <= $current_version && $number > $target_version)
-            )
-            {
+            if(
+                (
+                    $method === 'up' 
+                    AND $number > $current_version 
+                    AND $number <= $target_version
+                ) 
+                OR
+                (
+                    $method === 'down' 
+                    AND $number <= $current_version 
+                    AND $number > $target_version
+                )
+            ){
                 $instance = new $class();
-                if ( ! is_callable(array($instance, $method)))
-                {
-                    $this->_error_string = sprintf($this->lang->line('migration_missing_'.$method.'_method'), $class);
+                $this->show_migration_progress($number, $file);
+                if(!is_callable(array($instance, $method))){
+                    $this->_error_string = 
+                        sprintf(
+                            $this->lang->line('migration_missing_'.$method.'_method')
+                            , $class
+                        );
                     return FALSE;
                 }
-
-                log_message('debug', 'Migrating '.$method.' from version '.$current_version.' to version '.$number);
+                log_message(
+                    'debug'
+                    , 'Migrating '
+                    .$method
+                    .' from version '
+                    .$current_version
+                    .' to version '
+                    .$number
+                );
                 call_user_func(array($instance, $method));
                 $current_version = $number;
                 $this->_update_version($current_version);
             }
         }
-        if ($current_version <> $target_version)
-        {
+        if($current_version <> $target_version){
             $current_version = $target_version;
             $this->_update_version($current_version);
         }
