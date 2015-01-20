@@ -8,6 +8,9 @@ abstract class Base_Controller extends CI_Controller{
 
     function __construct(){
         parent::__construct();
+        $this->load->database();
+        $this->load->config("base");
+        $this->load->helper("base");
         $this->init();
     }
 
