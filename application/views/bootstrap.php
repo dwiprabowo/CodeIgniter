@@ -24,11 +24,13 @@
             </div>
         </div>
         <footer class="main position_fixed">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="footer_content">
-                        <div class="float_right">
-                            &copy;2014-<?=date('Y')?> <strong><?=anchor(site_url(), $app->title())?></strong>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="footer_content">
+                            <div class="float_right">
+                                &copy;2014-<?=date('Y')?> <strong><?=anchor(site_url(), $app->title())?></strong>
+                            </div>
                         </div>
                     </div>
                 </div>
