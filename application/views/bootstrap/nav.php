@@ -26,7 +26,7 @@
                             ?>
                             <li class="<?=$have_menu?'dropdown':''?> <?=is_active($v->active)?>">
                                 <a 
-                                    href="<?=site_url($v->action)?>"
+                                    href="<?=create_link($v->action)?>"
                                     <?php if($have_menu): ?>
                                         class="dropdown-toggle"
                                         data-toggle="dropdown"
@@ -43,7 +43,7 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <?php foreach($v->items as $_k => $_v): ?>
                                             <li>
-                                                <a href="<?=site_url($_v->action)?>">
+                                                <a href="<?=create_link($_v->action)?>">
                                                     <?=$_v->label?>
                                                 </a>
                                             </li>

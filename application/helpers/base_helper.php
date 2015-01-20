@@ -1,5 +1,24 @@
 <?php
 
+if(!function_exists('is_absolute_url')){
+    function is_absolute_url($url){
+        if(strpos($url, '://') !== FALSE || substr($url,0,strlen('//')) == '//')return TRUE;
+        return FALSE;
+    }
+}
+
+if(!function_exists('create_link')){
+    function create_link($uri){
+        if(is_absolute_url($uri)){
+            return $uri;
+        }elseif($uri === '#'){
+            return $uri;
+        }else{
+            return site_url($uri);
+        }
+    }
+}
+
 if(!function_exists('string_contain')){
     function string_contain($subject, $contain){
         if(strpos($subject, $contain) !== FALSE){
