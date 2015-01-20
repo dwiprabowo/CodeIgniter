@@ -2,6 +2,8 @@
 
 class Menu_model extends MY_Model{
 
+    private $disabled = FALSE;
+
     function __construct(){
         parent::__construct();
         $this->init();
