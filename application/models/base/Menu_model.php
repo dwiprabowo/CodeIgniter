@@ -30,11 +30,11 @@ class Menu_model extends MY_Model{
         }
     }
 
-    function disable(){
+    public function disable(){
         $this->disabled = TRUE;
     }
 
-    function enable(){
+    public function enable(){
         $this->disabled = FALSE;
     }
 
@@ -43,5 +43,15 @@ class Menu_model extends MY_Model{
             return array_to_object($this->items);
         }
         return FALSE;
+    }
+
+    public function set($key = FALSE, $data){
+        if(!$key){
+            return;
+        }
+        $this->items[$key] = array_replace_recursive(
+            $this->items[$key]
+            , $data
+        );
     }
 }
