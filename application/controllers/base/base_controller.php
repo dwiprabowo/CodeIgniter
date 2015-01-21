@@ -40,10 +40,13 @@ abstract class Base_Controller extends CI_Controller{
     }
 
     public function data($key = FALSE, $value = FALSE){
-        if($key AND $value){
+        if($key !== FALSE AND $value !== FALSE){
             $this->data[$key] = $value;
         }elseif($key){
-            return $this->data[$key];
+            if(isset($this->data[$key])){
+                return $this->data[$key];
+            }
+            return FALSE;
         }
         return $this->data;
     }
