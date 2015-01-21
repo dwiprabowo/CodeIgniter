@@ -15,8 +15,8 @@ if(!function_exists('twbs_nav')){
 }
 
 if(!function_exists('twbs_form')){
-    function twbs_form($model){
+    function twbs_form($model, $initial_data = FALSE, $action = FALSE){
         $CI =& get_instance();
-        return $CI->twbs->form($model);
+        return $CI->twbs->form($model, $initial_data, $action);
     }
 }

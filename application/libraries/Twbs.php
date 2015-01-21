@@ -18,10 +18,17 @@ class Twbs extends Assets{
         return $this->nav;
     }
 
-    public function form($model){
+    public function form($model, $initial_data = FALSE, $action = FALSE){
         $form = $model->get_form();
+        if($action){
+            $form->action = $action;
+        }
+        $form->active_item = $model->get_active_form();
         $autofocus_set = FALSE;
         foreach ($form->fields as $key => $value) {
+            if($initial_data){
+                $value->value = $initial_data->{$value->field};
+            }
             if(!@$value->id){
                 $value->id = $value->field;
             }

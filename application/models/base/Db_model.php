@@ -104,7 +104,7 @@ class Db_model extends Form_Model
         if ($data !== FALSE)
         {
             $data = $this->trigger('before_create', $data);
-            $this->db->insert($this->_table, $data);
+            $this->db->insert($this->_table, $this->filter_data($data));
             $insert_id = $this->db->insert_id();
             $this->trigger('after_create', $insert_id);
             return $insert_id;
@@ -135,7 +135,7 @@ class Db_model extends Form_Model
         if ($data !== FALSE)
         {
             $result = $this->db->where($this->primary_key, $primary_value)
-                               ->set($data)
+                               ->set($this->filter_data($data))
                                ->update($this->_table);
             $this->trigger('after_update', array($data, $result));
             return $result;
@@ -653,4 +653,27 @@ class Db_model extends Form_Model
         $method = ($multi) ? 'result' : 'row';
         return $this->_temporary_return_type == 'array' ? $method . '_array' : $method;
     }
+
+    public function get_fields(){
+        $query = "SELECT column_name AS field
+            FROM information_schema.columns
+            WHERE
+                table_schema = '{$this->db->database}'
+                AND table_name = '$this->_table'
+        ";
+        return $this->db->query($query)->result_object();
+    }
+
+    public function filter_data($data){
+        $filtered_data = [];
+        $fields = $this->get_fields();
+        foreach ($fields as $k => $v) {
+            $field_name = $v->field;
+            if(isset($data[$field_name])){
+                $filtered_data[$field_name] = $data[$field_name];
+            }
+        }
+        return $filtered_data;
+    }
+
 }

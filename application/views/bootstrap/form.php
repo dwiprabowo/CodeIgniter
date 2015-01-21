@@ -23,6 +23,9 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
+                    <div>
+                        <input type="hidden" name="active_item" value="<?=$data->active_item?>">
+                    </div>
                     <div class="col-sm-12 text-center">
                         <input type="submit" value="<?=$data->submit?>" class="btn btn-primary">
                     </div>
