@@ -29,7 +29,7 @@ abstract class App_Controller extends Base_Controller{
     public function _remap($method, $arguments){
         $controller_method = $method.'_'.$this->request->method;
         if(strtolower($this->request->method) == 'post'){
-            $arguments[] = $this->input->post();
+            $this->post = $this->input->post();
         }
         if(method_exists($this, $controller_method)){
             return call_user_func_array([$this, $controller_method], $arguments);
@@ -44,7 +44,7 @@ abstract class App_Controller extends Base_Controller{
         $this->_template(config_item(TEMPLATE));
         $this->init_web_resources();
         $this->init_rest();
-        $this->data('view', $this->view());
+        $this->data('view', $this->_view());
     }
 
     public function _build(){
@@ -61,7 +61,7 @@ abstract class App_Controller extends Base_Controller{
         $this->load->helper('html');
     }
 
-    private function view(){
+    private function _view(){
         $value = $this->router->directory;
         $value .= $this->router->class;
         $value .= DIRECTORY_SEPARATOR;
