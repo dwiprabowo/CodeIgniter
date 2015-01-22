@@ -3,20 +3,24 @@
 ?>
 
 <div style="overflow: auto;">
-    <?php if($objects): ?>
+    <?php if($objects AND get_data_fields($objects)): ?>
         <table class="table table-bordered table-hover">
             <tr>
                 <th>No</th>
-                <?php foreach($model->get_fields() as $k => $v): ?>
-                    <th><?=$v->field?></th>
+                <?php foreach(get_data_fields($objects) as $k => $v): ?>
+                    <th><?=$v?></th>
                 <?php endforeach; ?>
                 <th>Action</th>
             </tr>
                 <?php foreach($objects as $k => $v): ?>
                     <tr>
                         <td><?=$no?></td>
-                        <?php foreach($v as $_k => $_v): ?>
-                            <td><?=$_v?></td>
+                        <?php foreach(get_data_fields($objects) as $_k => $_v): ?>
+                            <td>
+                                <?=
+                                    (is_object($v->{$_v}) || is_array($v->{$_v}))?d($v->{$_v}):$v->{$_v}
+                                ?>
+                            </td>
                         <?php endforeach; ?>
                         <td>
                             <a href="<?=site_url($this->router->class.'/view/'.$v->id)?>">

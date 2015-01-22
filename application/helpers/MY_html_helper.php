@@ -86,6 +86,17 @@ if(!function_exists('input_element')){
                     , TRUE
                 );
                 break;
+            case INPUT_TYPE_DROPDOWN:
+                if(is_object($data->dropdown)){
+                    $data->dropdown = object_to_array($data->dropdown);
+                }
+                $result = form_dropdown(
+                    $data->field
+                    , $data->dropdown
+                    , isset($data->value)?$data->value:0
+                    , 'class="form-control"'
+                );
+                break;
             default:
                 # code...
                 break;

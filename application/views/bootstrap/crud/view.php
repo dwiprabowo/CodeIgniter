@@ -4,15 +4,21 @@
         top: 7px;
         right: 7px;
     }
+    div.an_object > .col-xs-3{
+        border-right: 1px solid rgba(0, 0, 0, .4);
+    }
+    div.an_object > .col-xs-9, div.an_object > .col-xs-3{
+        border-bottom: 1px solid rgba(0, 0, 0, .4);
+    }
 </style>
 <div class="well well-lg position_relative">
-    <?php foreach($model->get_fields() as $k => $v): ?>
-        <div class="row">
+    <?php foreach(get_data_fields($object) as $k => $v): ?>
+        <div class="row an_object">
             <label class="col-xs-3">
-                <?=$v->field?>
+                <?=$v?>
             </label>
             <div class="col-xs-9">
-                <?=$object->{$v->field}?>
+                <?=$object->{$v}?>
             </div>
         </div>
     <?php endforeach; ?>

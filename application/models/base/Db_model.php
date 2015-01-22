@@ -653,27 +653,5 @@ class Db_model extends Form_Model
         $method = ($multi) ? 'result' : 'row';
         return $this->_temporary_return_type == 'array' ? $method . '_array' : $method;
     }
-
-    public function get_fields(){
-        $query = "SELECT column_name AS field
-            FROM information_schema.columns
-            WHERE
-                table_schema = '{$this->db->database}'
-                AND table_name = '$this->_table'
-        ";
-        return $this->db->query($query)->result_object();
-    }
-
-    public function filter_data($data){
-        $filtered_data = [];
-        $fields = $this->get_fields();
-        foreach ($fields as $k => $v) {
-            $field_name = $v->field;
-            if(isset($data[$field_name])){
-                $filtered_data[$field_name] = $data[$field_name];
-            }
-        }
-        return $filtered_data;
-    }
-
+    
 }

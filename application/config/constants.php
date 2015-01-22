@@ -154,6 +154,7 @@ define('INPUT_TYPE_TEXT', 'text');
 define('INPUT_TYPE_PASSWORD', 'password');
 define('INPUT_TYPE_TEXTAREA', 'textarea');
 define('INPUT_TYPE_BOOL', 'bool');
+define('INPUT_TYPE_DROPDOWN', 'dropdown');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
