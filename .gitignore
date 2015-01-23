@@ -20,9 +20,4 @@ components/
 
 *.swp
 
-application/controllers/Tes.php
-application/models/Tes_model.php
-
 composer.lock
-
-migrations/
