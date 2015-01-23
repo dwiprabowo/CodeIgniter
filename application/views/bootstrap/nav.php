@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <?php if($menu->items() !== FALSE): ?>
+            <?php if($menu->items() !== FALSE AND empty($menu->items())): ?>
                 <button 
                     type="button" 
                     class="navbar-toggle collapsed" 

@@ -2,12 +2,27 @@
 
 class Twbs extends Assets{
 
+    protected $ci = null;
+
     private $dir = 'bootstrap';
-    private $nav = 'nav';
+    private $nav = null;
 
     function __construct($data = FALSE){
         parent::__construct($data);
+        $this->ci =& get_instance();
         $this->build();
+        $this->ci->load->config('twbs');
+        $this->init_nav();
+        $this->init_body();
+    }
+
+    private function init_nav(){
+        $this->nav = array_to_object(config_item('nav'));
+        $this->nav->filepath = $this->dir.DIRECTORY_SEPARATOR.$this->nav->filename;
+    }
+
+    private function init_body(){
+        $this->body = array_to_object(config_item('body'));
     }
 
     private function build(){
@@ -16,6 +31,10 @@ class Twbs extends Assets{
 
     public function nav(){
         return $this->nav;
+    }
+
+    public function body(){
+        return $this->body;
     }
 
     public function form($model, $initial_data = FALSE, $action = FALSE){
