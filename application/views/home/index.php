@@ -1,20 +1,20 @@
 <style>
-    input[type=text].email_subscribe{
-        font-size: 3em;
-        padding: .45em 2em;
-        width: 100%;
-        border: none;
-        background-color: transparent;
-        outline: none;
-        font-weight: bold;
+    .form-control{
+        height: 2.125em;
     }
-    div.well.well-lg{
+    input[type=text]#email{
+        font-size: 3em;
+        font-weight: bold;
+        text-align: center;
+        padding: .75em 2em;
+    }
+    div.form_wrapper{
         position: relative;
     }
     span.enter_command{
         position: absolute;
         font-size: 6em;
-        top: -2%;
+        top: -12%;
         right: 1%;
     }
     @media (max-width: 982px){
@@ -23,7 +23,7 @@
             top: -20%;
             right: 1%;
         }
-        input[type=text].email_subscribe{
+        input[type=text]#email{
             font-size: 2em;
             padding: .25em 2.15em;
         }
@@ -31,8 +31,10 @@
     @media (max-width: 768px){
         span.enter_command{
             font-size: 3em;
+            top: -12%;
+            right: 1%;
         }
-        input[type=text].email_subscribe{
+        input[type=text]#email{
             font-size: 1.5em;
             padding: .15em 1em;
         }
@@ -55,8 +57,8 @@
     h1.text-muted, h1.text-muted small, span.enter_command.text-muted{
         color: #eee;
     }
-    .well-lg{
-        padding: 2px;
+    span.text-left.help-block{
+        text-align: center;
     }
 </style>
 <div class="row">
@@ -75,17 +77,8 @@
                     </h1>
                 </div>
             </div>
-            <div class="well well-lg">
-                <?=form_open()?>
-                <input 
-                    type="text" 
-                    class="email_subscribe text-center" 
-                    spellcheck="false"
-                    name="email"
-                    autocomplete="off"
-                    value="<?=set_value('email')?>" 
-                    autofocus
-                >
+            <div class="form_wrapper">
+                <?=twbs_form($email)?>
                 <span 
                     class="enter_command text-muted" 
                     data-toggle="tooltip" 
@@ -93,26 +86,14 @@
                 >
                     &#9166;
                 </span>
-                <?=form_close()?>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    function moveCursorToEnd(el) {
-        if (typeof el.selectionStart == "number") {
-            el.selectionStart = el.selectionEnd = el.value.length;
-        } else if (typeof el.createTextRange != "undefined") {
-            el.focus();
-            var range = el.createTextRange();
-            range.collapse(false);
-            range.select();
-        }
-    }
-    moveCursorToEnd($(".email_subscribe")[0]);
     $(function(){
-        $('.email_subscribe').keyup(function(){
+        $('#email').keyup(function(){
             if($(this).val() != ""){
                 $("h1.text-center").addClass("text-muted");
                 $("span.enter_command").removeClass("text-muted");
@@ -121,7 +102,7 @@
                 $("span.enter_command").addClass("text-muted");
             }
         });
-        $('.email_subscribe').blur(function(){
+        $('#email').blur(function(){
             $(this).focus();
         });
     });

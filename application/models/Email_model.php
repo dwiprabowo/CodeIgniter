@@ -4,6 +4,7 @@ class Email_model extends Entity_model{
 
     public $form = [
         'default' => 'front',
+        'template' => 'simple',
         'items' => [
             'front' => [
                 'fields' => [

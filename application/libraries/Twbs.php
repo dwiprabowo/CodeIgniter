@@ -64,7 +64,7 @@ class Twbs extends Assets{
             $value->input_element = input_element($value->type, $value);
         }
         $result = $this->ci->load->view(
-            'bootstrap/form',
+            'bootstrap/template/form/'.$form->template,
             ['data' => $form],
             TRUE
         );

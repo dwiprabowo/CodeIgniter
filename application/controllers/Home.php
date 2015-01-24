@@ -12,10 +12,7 @@ class Home extends Aqsara_core{
             alert_success(
                 "Terima Kasih, Anda akan segera menerima kabar dari Kami"
             );
-            redirect($this->router->class);
-        }
-        if(validation_errors()){
-            ialert_error(validation_errors());
+            redirect();
         }
     }
 }

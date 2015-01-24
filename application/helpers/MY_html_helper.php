@@ -168,6 +168,12 @@ if(!function_exists('input_element_content')){
                 if(@$data['autofocus']){
                     $result .= " autofocus";
                 }
+                if(!@$data['autocomplete']){
+                    $result .= " autocomplete='off'";
+                }
+                if(!@$data['spellcheck']){
+                    $result .= " spellcheck='false'";
+                }
                 if(@$data['value'] AND @$data['field']){
                     if($type === INPUT_TYPE_TEXTAREA){
                         $result .= ">";

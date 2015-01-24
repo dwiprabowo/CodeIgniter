@@ -45,6 +45,7 @@ class Form_model extends MY_Model{
         }
         $temp_form = $this->form['items'][$this->form['default']];
         $temp_form['fields'] = $result;
+        $temp_form['template'] = $this->form['template'];
         return $temp_form;
     }
 
