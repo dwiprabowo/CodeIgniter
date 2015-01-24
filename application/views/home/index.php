@@ -82,7 +82,7 @@
                 <span 
                     class="enter_command text-muted" 
                     data-toggle="tooltip" 
-                    title="Tekan tombol Enter"
+                    title="Tekan Enter"
                 >
                     &#9166;
                 </span>

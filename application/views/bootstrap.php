@@ -6,7 +6,7 @@
         <?=meta('viewport', $app->viewport())?>
         <?=meta('description', $app->description())?>
         <?=meta('author', $app->author())?>
-        <?=twbs('favicon.ico', 'docs/')?>
+        <?=assets('favicon.ico')?>
         <title><?=$app->title()?></title>
         <?=twbs('bootstrap.css')?>
         <?=twbs('starter-template.css', 'docs/examples/starter-template/')?>

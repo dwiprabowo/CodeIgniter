@@ -10,7 +10,7 @@ class Email_model extends Entity_model{
                 'fields' => [
                     'email' => [
                         'type' => INPUT_TYPE_TEXT,
-                        'rules' => 'required|valid_email',
+                        'rules' => 'required|valid_email|is_unique[emails.email]',
                     ]
                 ]
             ]

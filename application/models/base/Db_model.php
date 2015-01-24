@@ -555,7 +555,7 @@ class Db_model extends Form_Model
                 }
                 else
                 {
-                    ialert_error('Error validating the form!');
+                    ialert_error($this->lang->line('form_validation_error_validate'));
                     return FALSE;
                 }
             }
