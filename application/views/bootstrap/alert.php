@@ -28,7 +28,7 @@
     <script>
         $(function(){
             var start = 0;
-            var show_time = 5;
+            var show_time = 7;
             var range = 2;
             $('.aqsara_alert').each(function(){
                 var self = this;

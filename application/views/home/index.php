@@ -67,7 +67,7 @@
                     <h1 class="text-center">
                         <small>Masukan</small> <em>email</em> <strong>Anda</strong> 
                         <small> 
-                            untuk menerima berita terbaru dari 
+                            untuk mendapatkan kabar terbaru dari 
                         </small>
                         <div class="main_title font_serif">
                             <span class="special-case">&#120016;</span>qsara
@@ -81,9 +81,16 @@
                     type="text" 
                     class="email_subscribe text-center" 
                     spellcheck="false"
+                    name="email"
+                    autocomplete="off"
+                    value="<?=set_value('email')?>" 
                     autofocus
                 >
-                <span class="enter_command text-muted">
+                <span 
+                    class="enter_command text-muted" 
+                    data-toggle="tooltip" 
+                    title="Tekan tombol Enter"
+                >
                     &#9166;
                 </span>
                 <?=form_close()?>
@@ -93,6 +100,17 @@
 </div>
 
 <script>
+    function moveCursorToEnd(el) {
+        if (typeof el.selectionStart == "number") {
+            el.selectionStart = el.selectionEnd = el.value.length;
+        } else if (typeof el.createTextRange != "undefined") {
+            el.focus();
+            var range = el.createTextRange();
+            range.collapse(false);
+            range.select();
+        }
+    }
+    moveCursorToEnd($(".email_subscribe")[0]);
     $(function(){
         $('.email_subscribe').keyup(function(){
             if($(this).val() != ""){
@@ -107,4 +125,7 @@
             $(this).focus();
         });
     });
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    })
 </script>

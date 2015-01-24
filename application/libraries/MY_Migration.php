@@ -2,8 +2,12 @@
 
 class MY_Migration extends CI_Migration{
 
+    const KEYWORD_CREATE_TABLE = "add";
+    public $migration_info = null;
+
     function __construct($config = []){
         parent::__construct($config);
+        $this->migration_info = new stdClass;
     }
 
     public function version_number(){
@@ -93,6 +97,13 @@ class MY_Migration extends CI_Migration{
                 )
             ){
                 $instance = new $class();
+                if($this->_migration_type === 'sequential'){
+                    if($number === "000"){
+                        $instance->skip_action = TRUE;
+                    }else{
+                        $instance->migration_info = $this->parse_name($migration_name);
+                    }
+                }
                 $this->show_migration_progress($number, $file);
                 if(!is_callable(array($instance, $method))){
                     $this->_error_string = 
@@ -122,5 +133,52 @@ class MY_Migration extends CI_Migration{
         }
         log_message('debug', 'Finished migrating to '.$current_version);
         return $current_version;
+    }
+
+    private function parse_name($name){
+        $segments = array_map('strtolower', explode('_', $name));
+        $keyword = $segments[0];
+        switch ($keyword) {
+            case self::KEYWORD_CREATE_TABLE:
+                $tablename = end($segments);
+                break;
+            default:
+                show_error("Unknown keyword!");
+                break;
+        }
+        $result = new stdClass;
+        $result->keyword = $keyword;
+        $result->tablename = $tablename;
+        return $result;
+    }
+
+    public function up(){
+        if(!isset($this->migration_info->keyword)){
+            return;
+        }
+        switch ($this->migration_info->keyword) {
+            case self::KEYWORD_CREATE_TABLE:
+                $this->dbforge->add_field('id');
+                $this->dbforge->add_field($this->fields);
+                $this->dbforge->create_table($this->migration_info->tablename);
+                break;
+            default:
+                show_error("Unknown keyword!");
+                break;
+        }
+    }
+
+    public function down(){
+        if(!isset($this->migration_info->keyword)){
+            return;
+        }
+        switch ($this->migration_info->keyword) {
+            case self::KEYWORD_CREATE_TABLE:
+                $this->dbforge->drop_table($this->migration_info->tablename);
+                break;
+            default:
+                show_error("Unknown keyword!");
+                break;
+        }
     }
 }
