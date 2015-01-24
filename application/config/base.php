@@ -18,4 +18,9 @@ $config[FONTAWESOME] = [
     "helper" => "fontawesome",
 ];
 
+$config[FONTELLO] = [
+    "root_path" => "assets/thirdparty/fontello/",
+    "helper" => "fontello",
+];
+
 $config['assets_img'] = ['png', 'jpeg', 'ico'];

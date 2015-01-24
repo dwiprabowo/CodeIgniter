@@ -6,7 +6,7 @@
         font-size: 3em;
         font-weight: bold;
         text-align: center;
-        padding: .75em 2em;
+        padding: .75em 2.5em;
     }
     div.form_wrapper{
         position: relative;
@@ -15,28 +15,26 @@
         position: absolute;
         font-size: 6em;
         top: -12%;
-        right: 1%;
+        right: -1%;
     }
     @media (max-width: 982px){
         span.enter_command{
-            font-size: 4.5em;
-            top: -20%;
-            right: 1%;
+            font-size: 4.2em;
+            top: -14%;
         }
         input[type=text]#email{
             font-size: 2em;
-            padding: .25em 2.15em;
+            padding: .25em 2.35em;
         }
     }
     @media (max-width: 768px){
         span.enter_command{
             font-size: 3em;
-            top: -12%;
-            right: 1%;
+            top: -11%;
         }
         input[type=text]#email{
             font-size: 1.5em;
-            padding: .15em 1em;
+            padding: .15em 2.15em;
         }
     }
     div.main_content{
@@ -46,9 +44,14 @@
         font-size: 48px;
         font-weight: bold;
         margin: 3% 0;
+        position: relative;
+        right: 30px;
     }
     span.special-case{
-        font-size: 72px;
+        font-size: 64px;
+        position: relative;
+        top: 11px;
+        right: -20px;
     }
     h1, span.enter_command{
         -webkit-transition: all .5s ease-in-out;
@@ -60,11 +63,14 @@
     span.text-left.help-block{
         text-align: center;
     }
+    div.text_part{
+        margin-bottom: 3%;
+    }
 </style>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="main_content">
-            <div class="row">
+            <div class="row text_part">
                 <div class="col-sm-8 col-sm-offset-2">
                     <h1 class="text-center">
                         <small>Masukan</small> <em>email</em> <strong>Anda</strong> 
@@ -72,7 +78,7 @@
                             untuk mendapatkan kabar terbaru dari 
                         </small>
                         <div class="main_title font_serif">
-                            <span class="special-case">&#120016;</span>qsara
+                            <span class="icon-aqsara-logo special-case"></span>qsara
                         </div>
                     </h1>
                 </div>
@@ -80,12 +86,10 @@
             <div class="form_wrapper">
                 <?=twbs_form($email)?>
                 <span 
-                    class="enter_command text-muted" 
-                    data-toggle="tooltip" 
+                    class="icon-enter-key enter_command text-muted"
+                    data-toggle="tooltip"
                     title="Tekan Enter"
-                >
-                    &#9166;
-                </span>
+                ></span>
             </div>
         </div>
     </div>
