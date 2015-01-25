@@ -13,6 +13,11 @@ $config[JQUERY] = [
     "helper" => "jquery",
 ];
 
+$config[JQUERYUI] = [
+    "root_path" => "vendor/components/",
+    "helper" => "jqueryui",
+];
+
 $config[FONTAWESOME] = [
     "root_path" => "vendor/fortawesome/font-awesome/",
     "helper" => "fontawesome",

@@ -56,6 +56,7 @@ abstract class App_Controller extends Base_Controller{
         $this->load->library('assets');
         $this->load->library('twbs', config_item(TWBS));
         $this->load->library('assets', config_item(JQUERY), 'jquery');
+        $this->load->library('assets', config_item(JQUERYUI), 'jqueryui');
         $this->load->library('assets', config_item(FONTAWESOME), 'fontawesome');
         $this->load->library('assets', config_item(FONTELLO), 'fontello');
         $this->load->library('alert');
