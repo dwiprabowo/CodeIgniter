@@ -26,12 +26,12 @@ class Twbs extends Assets{
         $this->nav = $this->dir.DIRECTORY_SEPARATOR.$this->nav;
     }
 
-    public function body(){
-        return $this->body;
-    }
-
     public function nav(){
         return $this->nav;
+    }
+
+    public function body(){
+        return $this->body;
     }
 
     public function form($model, $initial_data = FALSE, $action = FALSE){

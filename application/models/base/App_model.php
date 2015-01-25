@@ -47,6 +47,7 @@ class App_Model extends MY_Model{
         if($html){
             return $this->title_html;
         }
+        return $this->title;
     }
 
     public function enable_profiler(){
