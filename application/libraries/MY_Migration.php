@@ -181,4 +181,5 @@ class MY_Migration extends CI_Migration{
                 break;
         }
     }
+
 }

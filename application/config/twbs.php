@@ -1,7 +1,6 @@
 <?php
 
-$config['body'] = [
-];
+$config['body'] = [];
 
 $config['nav'] = [
     'filename' => 'nav',
