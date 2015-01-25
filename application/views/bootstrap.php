@@ -7,12 +7,37 @@
         <?=meta('description', $app->description())?>
         <?=meta('author', $app->author())?>
         <?=twbs('favicon.ico', 'docs/')?>
-        <title><?=$app->title()?></title>
+        <title><?=$app->title(0)?></title>
         <?=twbs('bootstrap.css')?>
         <?=twbs('starter-template.css', 'docs/examples/starter-template/')?>
         <?=jquery('jquery.js', 'jquery/')?>
         <?=twbs('bootstrap.js')?>
+        <?=fontawesome('font-awesome.css')?>
+        <?=fontello('fontello.css')?>
         <?=assets('style.css')?>
+        <style type="text/css">
+            body{
+                <?php if(twbs_body_color()): ?>
+                    color: <?=twbs_body_color()?>;
+                <?php endif; ?>
+                <?php if(twbs_body_background_color()): ?>
+                    background-color: <?=twbs_body_background_color()?>;
+                <?php endif; ?>
+            }
+            nav.navbar{
+                <?php if(twbs_nav_color()): ?>
+                    background-color:  <?=twbs_nav_color()?>;
+                <?php endif; ?>
+            }
+            a.navbar-brand > span.title-adjust{
+                position: relative;
+                right: -5px;
+            }
+            a > span.title-adjust{
+                position: relative;
+                right: -3px;
+            }
+        </style>
     </head>
     <body>
         <?php $this->load->view(twbs_nav()) ?>
@@ -29,7 +54,12 @@
                     <div class="col-sm-12">
                         <div class="footer_content">
                             <div class="float_right">
-                                &copy;2014-<?=date('Y')?> <strong><?=anchor(site_url(), $app->title())?></strong>
+                                <strong>&copy;</strong>
+                                2014 - <?=date('Y')?> 
+                                <?=str_repeat('&nbsp;', 2)?>
+                                <strong class="font_serif">
+                                    <?=anchor(site_url(), $app->title())?>
+                                </strong>
                             </div>
                         </div>
                     </div>

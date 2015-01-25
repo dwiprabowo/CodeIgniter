@@ -3,15 +3,31 @@
 class Twbs extends Assets{
 
     private $dir = 'bootstrap';
-    private $nav = 'nav';
+    private $nav = null;
 
     function __construct($data = FALSE){
         parent::__construct($data);
         $this->build();
+        $this->ci->load->config('twbs');
+        $this->init_nav();
+        $this->init_body();
+    }
+
+    private function init_nav(){
+        $this->nav = array_to_object(config_item('nav'));
+        $this->nav->filepath = $this->dir.DIRECTORY_SEPARATOR.$this->nav->filename;
+    }
+
+    private function init_body(){
+        $this->body = array_to_object(config_item('body'));
     }
 
     private function build(){
         $this->nav = $this->dir.DIRECTORY_SEPARATOR.$this->nav;
+    }
+
+    public function body(){
+        return $this->body;
     }
 
     public function nav(){
@@ -45,7 +61,7 @@ class Twbs extends Assets{
             $value->input_element = input_element($value->type, $value);
         }
         $result = $this->ci->load->view(
-            'bootstrap/form',
+            'bootstrap/template/form/'.$form->template,
             ['data' => $form],
             TRUE
         );

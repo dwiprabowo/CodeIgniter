@@ -7,7 +7,10 @@ class Form_model extends MY_Model{
         $this->load->helper('form');
     }
 
-    public function set_form($value){
+    public function set_form($value = FALSE){
+        if(!$value){
+            return;
+        }
         if(isset($this->form['items'][$value])){
             $this->form['default'] = $value;
         }else{
@@ -42,6 +45,7 @@ class Form_model extends MY_Model{
         }
         $temp_form = $this->form['items'][$this->form['default']];
         $temp_form['fields'] = $result;
+        $temp_form['template'] = $this->form['template'];
         return $temp_form;
     }
 

@@ -14,6 +14,7 @@ class App_Model extends MY_Model{
         $this->author = config_item(APP_PREFIX."author");
         $this->description = config_item(APP_PREFIX."description");
         $this->title = config_item(APP_PREFIX."title");
+        $this->title_html = config_item(APP_PREFIX."title_html");
         $this->enable_profiler = config_item(APP_PREFIX."enable_profiler");
         $this->viewport = config_item(APP_PREFIX."viewport");
         $this->viewport = implode(
@@ -42,8 +43,10 @@ class App_Model extends MY_Model{
         return $this->x_ua_compatible_equiv;
     }
 
-    public function title(){
-        return $this->title;
+    public function title($html = TRUE){
+        if($html){
+            return $this->title_html;
+        }
     }
 
     public function enable_profiler(){

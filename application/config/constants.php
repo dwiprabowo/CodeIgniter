@@ -143,6 +143,8 @@ define('DIR_ROUTES', DIR_CONFIG.'routes/');
 define('TEMPLATE', 0);
 define('TWBS', 1);
 define('JQUERY', 2);
+define('FONTAWESOME', 3);
+define('FONTELLO', 4);
 
 /*
 |--------------------------------------------------------------------------
