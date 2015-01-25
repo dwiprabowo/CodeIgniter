@@ -7,7 +7,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <?php $this->load->view('bootstrap/template/form/simple') ?>
+                <?php $this->load->view('bootstrap/template/form/base') ?>
             </div>
         </div>
     </div>
