@@ -6,5 +6,4 @@ $config['default_item'] = [
     'active'    => [],
 ];
 
-$config['menu'] = [
-];
+$config['menu'] = [];

@@ -77,10 +77,8 @@ class Migrate extends CLI_Controller{
 
     public function check_current_version($print = TRUE){
         $version = $this->migration->version_number();
-        echo str_repeat("-", self::CLI_VIEW_WIDTH);
         echo "\n";
-        printf("| ".color('red', 'bold', TRUE)."current version is: %-54s ".color_reset(TRUE)."|\n", $version);
-        echo str_repeat("-", self::CLI_VIEW_WIDTH);
+        echo color('red', 'bold', TRUE)."current version is: $version ".color_reset(TRUE);
         echo "\n";
         color_reset();
     }

@@ -10,8 +10,17 @@ $config[TWBS] = [
 
 $config[JQUERY] = [
     "root_path" => "vendor/components/",
-    "dist" => "dist/",
     "helper" => "jquery",
+];
+
+$config[FONTAWESOME] = [
+    "root_path" => "vendor/fortawesome/font-awesome/",
+    "helper" => "fontawesome",
+];
+
+$config[FONTELLO] = [
+    "root_path" => "assets/thirdparty/fontello/",
+    "helper" => "fontello",
 ];
 
 $config['assets_img'] = ['png', 'jpeg', 'ico'];
