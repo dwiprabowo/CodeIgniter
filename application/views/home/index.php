@@ -50,16 +50,27 @@
 </div>
 
 <script>
+    var hour = 10;
     $(function(){
+        function getHour(){
+            var now = new Date();
+            return now.getHours();
+        }
         var speaking = false;
-        var message = [
-            {content: "Halo!", time: 2000},
-            {content: "Perkenalkan", time: 1000},
-            {content: "Nama saya <strong>Juli</strong>", time: 3000},
-            {content: "bekerja sebagai <strong>Web Programmer</strong>", time: 4000},
-            {content: "memiliki pengalaman kerja", time: 1500},
-            {content: "kurang lebih selama <strong>3 Tahun</strong>", time: 3000},
-        ];
+
+        function getDayGreetingCode(hour){
+            var value = "";
+            if(hour > 4 && hour <= 10){
+                value = "pagi";
+            }else if(hour > 11 && hour <= 14){
+                value = "siang";
+            }else if(hour > 14 && hour <= 18){
+                value = "sore";
+            }else{
+                value = "malam";
+            }
+            return value;
+        }
         var base_path = "<?=base_url()?>";
         var eyes = [
             'assets/img/face-animated/eyes-closed.png',
@@ -82,11 +93,19 @@
         });
 
         function speak(){
+            var message = [
+                {content: "Halo! Selamat "+getDayGreetingCode(getHour()), time: 1500},
+                {content: "Nama saya <strong>Dwi Juli Prabowo</strong>", time: 2000},
+                {content: "Selamat datang di halaman profil <i>online</i> saya", time: 3000},
+                {content: "Untuk mengetahui lebih detail mengenai saya, Anda bisa mengakses menu yang ada di <strong>kanan atas</strong>", time: 6000},
+                {content: "Untuk kontak langsung dengan saya, Anda bisa menghubungi akun sosial media, email atau nomor telepon genggam yang ada di <strong>bawah</strong>", time: 8000},
+                {content: "Terima kasih, semoga "+getDayGreetingCode(getHour())+" Anda menyenangkan", time: 6000},
+            ];
             var time_padding = 0;
             for(var i = 0;i < message.length;i++){
                 updateContent(message[i].content, message[i].time, time_padding);
                 time_padding += message[i].time;
-                time_padding += 1500;
+                time_padding += 1200;
             }
             reshow_trigger(time_padding);
         }
@@ -100,7 +119,7 @@
 
         function updateContent(message, time, time_start){
             setTimeout(function(){
-                var placement = 'top';
+                var placement = 'bottom';
                 if($(window).width() > 768){
                     placement = 'right';
                 }
@@ -112,7 +131,7 @@
                 $("#popup_text").popover('show');
                 setTimeout(function(){
                     $("#popup_text").popover('destroy');
-                }, time+1000);
+                }, time+200);
             }, time_start);
         }
     });
