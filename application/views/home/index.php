@@ -25,6 +25,19 @@
         top: 0;
         left: 0;
     }
+    .contact_area{
+        left: 0;
+        width: 100%;
+        position: fixed;
+        bottom: 10%;
+    }
+    .contact_area .contact_content .contact_item{
+        display: inline-block;
+        margin: 5%;
+    }
+    .contact_area .contact_content .contact_item i{
+        font-size: 32px;
+    }
 </style>
 <div class="text-center home-index-page-wrapper">
     <div class="text-center">
@@ -46,6 +59,35 @@
             title="Popover title" 
             onclick="$('#trigger').popover('toggle')" 
         ><span class="glyphicon glyphicon-play"></span></button>
+    </div>
+</div>
+<div class="contact_area">
+    <div class="contact_content text-center">
+        <div class="contact_item">
+            <a href="https://www.facebook.com/juli.prabowo">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </div>
+        <div class="contact_item">
+            <a href="https://twitter.com/dwjpr">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </div>
+        <div class="contact_item">
+            <a href="id.linkedin.com/pub/dwi-prabowo/40/ba5/895">
+                <i class="fa fa-linkedin-square"></i>
+            </a>
+        </div>
+        <div class="contact_item">
+            <a href="mailto:dwi.juli.prabowo@gmail.com">
+                <i class="fa fa-envelope"></i>
+            </a>
+        </div>
+        <div class="contact_item">
+            <a href="tel:+6285640988820">
+                <i class="fa fa-mobile-phone"></i>
+            </a>
+        </div>
     </div>
 </div>
 

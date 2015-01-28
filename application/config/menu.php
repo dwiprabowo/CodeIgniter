@@ -6,4 +6,14 @@ $config['default_item'] = [
     'active'    => [],
 ];
 
-$config['menu'] = [];
+$config['menu'] = [
+    "sekolah" => [
+        'label' => 'Sekolah',
+    ],
+    "kerja" => [
+        'label' => 'Pekerjaan',
+    ],
+    "keterampilan" => [
+        'label' => 'Keterampilan',
+    ],
+];

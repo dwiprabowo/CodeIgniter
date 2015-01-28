@@ -16,19 +16,6 @@
         <?=fontello('fontello.css')?>
         <?=assets('style.css')?>
         <style type="text/css">
-            body{
-                <?php if(twbs_body_color()): ?>
-                    color: <?=twbs_body_color()?>;
-                <?php endif; ?>
-                <?php if(twbs_body_background_color()): ?>
-                    background-color: <?=twbs_body_background_color()?>;
-                <?php endif; ?>
-            }
-            nav.navbar{
-                <?php if(twbs_nav_color()): ?>
-                    background-color:  <?=twbs_nav_color()?>;
-                <?php endif; ?>
-            }
             a.navbar-brand > span.title-adjust{
                 position: relative;
                 right: -5px;
