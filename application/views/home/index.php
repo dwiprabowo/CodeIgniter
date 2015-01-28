@@ -51,6 +51,7 @@
 
 <script>
     $(function(){
+        var speaking = false;
         var message = [
             {content: "Halo!", time: 2000},
             {content: "Perkenalkan", time: 1000},
@@ -73,24 +74,39 @@
         }
 
         $("#speak_trigger").click(function(){
-            speak();
+            if(!speaking){
+                $("#speak_trigger").fadeOut('slow');
+                speak();
+                speaking = true;
+            }
         });
 
         function speak(){
             var time_padding = 0;
             for(var i = 0;i < message.length;i++){
-                console.log(time_padding);
                 updateContent(message[i].content, message[i].time, time_padding);
                 time_padding += message[i].time;
                 time_padding += 1500;
             }
+            reshow_trigger(time_padding);
+        }
+
+        function reshow_trigger(time){
+            setTimeout(function(){
+                speaking = false;
+                $("#speak_trigger").fadeIn('slow');
+            }, time);
         }
 
         function updateContent(message, time, time_start){
             setTimeout(function(){
-                console.log('called: '+message);
+                var placement = 'top';
+                if($(window).width() > 768){
+                    placement = 'right';
+                }
                 $("#popup_text").popover({
                     html: true,
+                    placement: placement,
                     content: message,
                 });
                 $("#popup_text").popover('show');
