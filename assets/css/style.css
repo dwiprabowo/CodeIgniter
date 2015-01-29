@@ -1,3 +1,8 @@
+@font-face{
+    font-family: "Ubuntu Regular";
+    src: url('../font/ubuntu-font-family-0.80/Ubuntu-R.ttf');
+}
+
 .font_bold{
     font-weight: bold;
 }

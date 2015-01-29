@@ -9,13 +9,15 @@
         <?=twbs('favicon.ico', 'docs/')?>
         <title><?=$app->title(0)?></title>
         <?=twbs('bootstrap.css')?>
-        <?=twbs('starter-template.css', 'docs/examples/starter-template/')?>
         <?=jquery('jquery.js', 'jquery/')?>
         <?=twbs('bootstrap.js')?>
         <?=fontawesome('font-awesome.css')?>
         <?=fontello('fontello.css')?>
         <?=assets('style.css')?>
         <style type="text/css">
+            body{
+                font-family: "Ubuntu Regular", sans-serif;
+            }
             a.navbar-brand > span.title-adjust{
                 position: relative;
                 right: -5px;
@@ -27,9 +29,19 @@
             footer{
                 background: white;
             }
+
+            .navbar-default.styled{
+                background: none;
+                border: none;
+                padding-top: 3%;
+            }
+            nav#navbar_fixed{
+                display: none;
+            }
         </style>
     </head>
     <body>
+        <?php $this->load->view('bootstrap/nav/styled') ?>
         <?php $this->load->view(twbs_nav()) ?>
         <div class="container">
             <div class="starter-template">
@@ -47,7 +59,7 @@
                                 <strong>&copy;</strong>
                                 2014 - <?=date('Y')?> 
                                 <?=str_repeat('&nbsp;', 2)?>
-                                <strong class="font_serif">
+                                <strong>
                                     <?=anchor(site_url(), $app->title())?>
                                 </strong>
                             </div>

@@ -36,7 +36,36 @@
         margin: 5%;
     }
     .contact_area .contact_content .contact_item i{
-        font-size: 32px;
+        font-size: 72px;
+    }
+
+    i.fa{
+        -webkit-transition: all .2s;
+        transition: all .2s;
+    }
+
+    i.fa-facebook-official{
+       color: #3B5998;
+    }
+
+    a:hover i.fa-facebook-official{
+        color: #2F3E5F;
+    }
+
+    @media (max-width: 992px){
+        .contact_area .contact_content .contact_item i{
+            font-size: 64px;
+        }
+    }
+    @media (max-width: 768px){
+        .contact_area .contact_content .contact_item i{
+            font-size: 48px;
+        }
+    }
+    @media (max-width: 480px){
+        .contact_area .contact_content .contact_item i{
+            font-size: 32px;
+        }
     }
 </style>
 <div class="text-center home-index-page-wrapper">

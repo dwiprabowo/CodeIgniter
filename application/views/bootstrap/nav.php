@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar_fixed">
     <div class="container">
         <div class="navbar-header">
             <?php if($menu->items() !== FALSE AND !empty($menu->items())): ?>
@@ -12,7 +12,7 @@
                     <?=str_repeat('<span class="icon-bar"></span>', 3)?>
                 </button>
             <?php endif; ?>
-            <a class="navbar-brand font_serif font_bold" href="<?=site_url()?>">
+            <a class="navbar-brand font_bold" href="<?=site_url()?>">
                 <?=$app->title()?>
             </a>
         </div>
