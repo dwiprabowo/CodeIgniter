@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default styled navbar-fixed-top" id="navbar_styled">
+<nav class="navbar navbar-default styled navbar-fixed-top background_fade_down" id="navbar_styled">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">

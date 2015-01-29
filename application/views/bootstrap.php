@@ -19,17 +19,34 @@
                 font-family: "Ubuntu Regular", sans-serif;
                 padding-top: 10%;
             }
-            footer{
-                background: white;
+
+            .background_fade_down{
+                background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0.91) 84%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(84%,rgba(255,255,255,0.91)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0.91) 84%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0.91) 84%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0.91) 84%,rgba(255,255,255,0) 100%); /* IE10+ */
+                background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,0.91) 84%,rgba(255,255,255,0) 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+            }
+
+            .background_fade_up{
+                background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.91) 16%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(16%,rgba(255,255,255,0.91)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.91) 16%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.91) 16%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.91) 16%,rgba(255,255,255,1) 100%); /* IE10+ */
+                background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.91) 16%,rgba(255,255,255,1) 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
             }
 
             .navbar-default.styled{
-                background: white;
                 border: none;
                 padding-top: 3%;
             }
             div#main-view{
                 margin-top: 50px;
+                margin-bottom: 80px;
             }
 
             @media (max-width: 992px){
@@ -59,7 +76,7 @@
                 <?php $this->load->view($view) ?>
             </div>
         </div>
-        <footer class="main position_fixed">
+        <footer class="main position_fixed background_fade_up">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
