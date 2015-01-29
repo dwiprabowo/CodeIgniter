@@ -24,6 +24,9 @@
                 position: relative;
                 right: -3px;
             }
+            footer{
+                background: white;
+            }
         </style>
     </head>
     <body>
