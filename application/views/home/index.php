@@ -1,13 +1,15 @@
 <style>
     div.home-index-page-wrapper{
-        margin-top: 10%;
+        margin-top: 40px;
     }
     div.screen-wrapper{
         display: inline-block;
-        border: 1px solid black;
-        padding: 0;
+        border: 15px solid rgba(204, 198, 198, 1);
+        border-radius: 30px;
+        padding: 10px 20px;
+        padding-bottom: 0px;
         margin: 0;
-        height: 130px;
+        height: 162px;
     }
     div.button-wrapper{
         margin-top: 2%;
@@ -33,10 +35,15 @@
     }
     .contact_area .contact_content .contact_item{
         display: inline-block;
-        margin: 5%;
+        width: 50px;
+        height: 50px;
+        margin: 60px;
     }
     .contact_area .contact_content .contact_item i{
         font-size: 72px;
+    }
+    .contact_area .contact_content a.contact_item:hover i.fa{
+        font-size: 108px;
     }
 
     i.fa{
@@ -47,22 +54,75 @@
     i.fa-facebook-official{
        color: #3B5998;
     }
-
     a:hover i.fa-facebook-official{
         color: #2F3E5F;
     }
 
+    i.fa-envelope{
+        color: #DA5043;
+    }
+    a:hover i.fa-envelope{
+        color: #89241B;
+    }
+
+    i.fa-mobile-phone{
+        color: #999;
+    }
+    a:hover i.fa-mobile-phone{
+        color: #333;
+    }
+
+    div.popover-content{
+        text-align: center;
+    }
+
     @media (max-width: 992px){
+        div.home-index-page-wrapper{
+            margin-top: 90px;
+        }
+        .contact_area .contact_content .contact_item{
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 50px;
+        }
+        .contact_area .contact_content a.contact_item:hover i.fa{
+            font-size: 72px;
+        }
         .contact_area .contact_content .contact_item i{
             font-size: 64px;
         }
     }
     @media (max-width: 768px){
+        div.home-index-page-wrapper{
+            margin-top: 80px;
+        }
+        .contact_area .contact_content .contact_item{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 30px;
+        }
+        .contact_area .contact_content a.contact_item:hover i.fa{
+            font-size: 64px;
+        }
         .contact_area .contact_content .contact_item i{
             font-size: 48px;
         }
     }
     @media (max-width: 480px){
+        div.home-index-page-wrapper{
+            margin-top: 100px;
+        }
+        .contact_area .contact_content .contact_item{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 20px;
+        }
+        .contact_area .contact_content a.contact_item:hover i.fa{
+            font-size: 48px;
+        }
         .contact_area .contact_content .contact_item i{
             font-size: 32px;
         }
@@ -80,43 +140,24 @@
             </div>
         </div>
     </div>
-    <div class="button-wrapper">
-        <button 
-            type="button" 
-            id="speak_trigger"
-            class="btn btn-lg btn-danger" 
-            title="Popover title" 
-            onclick="$('#trigger').popover('toggle')" 
-        ><span class="glyphicon glyphicon-play"></span></button>
-    </div>
 </div>
 <div class="contact_area">
     <div class="contact_content text-center">
-        <div class="contact_item">
-            <a href="https://www.facebook.com/juli.prabowo">
-                <i class="fa fa-facebook-official"></i>
-            </a>
-        </div>
-        <div class="contact_item">
-            <a href="https://twitter.com/dwjpr">
-                <i class="fa fa-twitter"></i>
-            </a>
-        </div>
-        <div class="contact_item">
-            <a href="id.linkedin.com/pub/dwi-prabowo/40/ba5/895">
-                <i class="fa fa-linkedin-square"></i>
-            </a>
-        </div>
-        <div class="contact_item">
-            <a href="mailto:dwi.juli.prabowo@gmail.com">
-                <i class="fa fa-envelope"></i>
-            </a>
-        </div>
-        <div class="contact_item">
-            <a href="tel:+6285640988820">
-                <i class="fa fa-mobile-phone"></i>
-            </a>
-        </div>
+        <a class="contact_item" href="https://www.facebook.com/juli.prabowo">
+            <i class="fa fa-facebook-official"></i>
+        </a>
+        <a class="contact_item" href="https://twitter.com/dwjpr">
+            <i class="fa fa-twitter"></i>
+        </a>
+        <a class="contact_item" href="http://id.linkedin.com/pub/dwi-prabowo/40/ba5/895">
+            <i class="fa fa-linkedin-square"></i>
+        </a>
+        <a class="contact_item" href="mailto:dwi.juli.prabowo@gmail.com">
+            <i class="fa fa-envelope text-danger"></i>
+        </a>
+        <a class="contact_item" href="tel:+6285640988820">
+            <i class="fa fa-mobile-phone"></i>
+        </a>
     </div>
 </div>
 
@@ -155,11 +196,10 @@
             }, (1000*Math.random()));
         }
 
-        $("#speak_trigger").click(function(){
+        $(".animated_image_place_wrapper").hover(function(){
             if(!speaking){
-                $("#speak_trigger").fadeOut('slow');
-                speak();
                 speaking = true;
+                speak();
             }
         });
 
@@ -172,7 +212,7 @@
                 {content: "Untuk kontak langsung dengan saya, Anda bisa menghubungi akun sosial media, email atau nomor telepon genggam yang ada di <strong>bawah</strong>", time: 8000},
                 {content: "Terima kasih, semoga "+getDayGreetingCode(getHour())+" Anda menyenangkan", time: 6000},
             ];
-            var time_padding = 0;
+            var time_padding = 500;
             for(var i = 0;i < message.length;i++){
                 updateContent(message[i].content, message[i].time, time_padding);
                 time_padding += message[i].time;
@@ -184,7 +224,6 @@
         function reshow_trigger(time){
             setTimeout(function(){
                 speaking = false;
-                $("#speak_trigger").fadeIn('slow');
             }, time);
         }
 

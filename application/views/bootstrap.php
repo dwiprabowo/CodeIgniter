@@ -17,14 +17,7 @@
         <style type="text/css">
             body{
                 font-family: "Ubuntu Regular", sans-serif;
-            }
-            a.navbar-brand > span.title-adjust{
-                position: relative;
-                right: -5px;
-            }
-            a > span.title-adjust{
-                position: relative;
-                right: -3px;
+                padding-top: 10%;
             }
             footer{
                 background: white;
@@ -37,6 +30,12 @@
             }
             nav#navbar_fixed{
                 display: none;
+            }
+            @media (max-width: 768px){
+                ul.nav.navbar-nav.navbar-right > li > a{
+                    background: white;
+                    border-bottom: 1px solid #666;
+                }
             }
         </style>
     </head>

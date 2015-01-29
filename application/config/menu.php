@@ -8,14 +8,14 @@ $config['default_item'] = [
 
 $config['menu'] = [
     "sekolah" => [
-        'label' => 'Sekolah',
-        'action' => 'sekolah',
-        'active' => ['sekolah'],
+        'label' => 'Riwayat Belajar',
+        'action' => 'riwayat_belajar',
+        'active' => ['riwayat_belajar'],
     ],
     "kerja" => [
-        'label' => 'Pekerjaan',
-        'action' => 'pekerjaan',
-        'active' => ['pekerjaan'],
+        'label' => 'Pengalaman Kerja',
+        'action' => 'pengalaman_kerja',
+        'active' => ['pengalaman_kerja'],
     ],
     "keterampilan" => [
         'label' => 'Keterampilan',
