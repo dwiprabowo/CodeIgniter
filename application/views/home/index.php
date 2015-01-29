@@ -1,7 +1,4 @@
 <style>
-    div.home-index-page-wrapper{
-        margin-top: 40px;
-    }
     div.screen-wrapper{
         display: inline-block;
         border: 15px solid rgba(204, 198, 198, 1);
@@ -77,9 +74,6 @@
     }
 
     @media (max-width: 992px){
-        div.home-index-page-wrapper{
-            margin-top: 90px;
-        }
         .contact_area .contact_content .contact_item{
             display: inline-block;
             width: 40px;
@@ -94,9 +88,6 @@
         }
     }
     @media (max-width: 768px){
-        div.home-index-page-wrapper{
-            margin-top: 80px;
-        }
         .contact_area .contact_content .contact_item{
             display: inline-block;
             width: 30px;
@@ -111,9 +102,6 @@
         }
     }
     @media (max-width: 480px){
-        div.home-index-page-wrapper{
-            margin-top: 100px;
-        }
         .contact_area .contact_content .contact_item{
             display: inline-block;
             width: 20px;

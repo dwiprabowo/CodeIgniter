@@ -31,10 +31,27 @@
             nav#navbar_fixed{
                 display: none;
             }
+            div#main-view{
+                margin-top: 50px;
+            }
+
+            @media (max-width: 992px){
+                div#main-view{
+                    margin-top: 90px;
+                }
+            }
             @media (max-width: 768px){
                 ul.nav.navbar-nav.navbar-right > li > a{
                     background: white;
                     border-bottom: 1px solid #666;
+                }
+                div#main-view{
+                    margin-top: 80px;
+                }
+            }
+            @media (max-width: 480px){
+                div#main-view{
+                    margin-top: 100px;
                 }
             }
         </style>
@@ -43,10 +60,8 @@
         <?php $this->load->view('bootstrap/nav/styled') ?>
         <?php $this->load->view(twbs_nav()) ?>
         <div class="container">
-            <div class="starter-template">
-                <div class="text-left">
-                    <?php $this->load->view($view) ?>
-                </div>
+            <div id="main-view">
+                <?php $this->load->view($view) ?>
             </div>
         </div>
         <footer class="main position_fixed">
