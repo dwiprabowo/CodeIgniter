@@ -9,9 +9,13 @@ $config['default_item'] = [
 $config['menu'] = [
     "sekolah" => [
         'label' => 'Sekolah',
+        'action' => 'sekolah',
+        'active' => ['sekolah'],
     ],
     "kerja" => [
         'label' => 'Pekerjaan',
+        'action' => 'pekerjaan',
+        'active' => ['pekerjaan'],
     ],
     "keterampilan" => [
         'label' => 'Keterampilan',
