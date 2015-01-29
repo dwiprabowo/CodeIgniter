@@ -24,12 +24,9 @@
             }
 
             .navbar-default.styled{
-                background: none;
+                background: white;
                 border: none;
                 padding-top: 3%;
-            }
-            nav#navbar_fixed{
-                display: none;
             }
             div#main-view{
                 margin-top: 50px;
@@ -42,7 +39,6 @@
             }
             @media (max-width: 768px){
                 ul.nav.navbar-nav.navbar-right > li > a{
-                    background: white;
                     border-bottom: 1px solid #666;
                 }
                 div#main-view{
@@ -57,7 +53,6 @@
         </style>
     </head>
     <body>
-        <?php $this->load->view('bootstrap/nav/styled') ?>
         <?php $this->load->view(twbs_nav()) ?>
         <div class="container">
             <div id="main-view">
