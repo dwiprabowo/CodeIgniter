@@ -15,9 +15,6 @@
         border-color: rgba(104, 98, 98, 1);
         background: rgba(104, 98, 98, .1);
     }
-    div.button-wrapper{
-        margin-top: 2%;
-    }
     div.animated_image_place_wrapper{
         display: inline-block;
         width: 128px;
@@ -35,48 +32,118 @@
         text-align: center;
     }
     .home-index-page-wrapper{
-        padding-top: 80px;
+        position: relative;
+        padding-top: 60px;
     }
-
+    div#popover_container{
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        top: 180px;
+    }
     .contact_area{
-        margin-top: 150px;
+        margin-top: 120px;
     }
     .contact_area a.contact_item{
         display: inline-block;
         position: relative;
-        margin: 6px 45px;
-        padding: 6px 45px;
         text-decoration: none;
-    }
-    .contact_area a.contact_item:hover i.fa{
-        font-size: 96px;
+        margin: 2px 16px;
+        padding: 2px 10px;
     }
     .contact_area i.fa{
-        font-size: 72px;
         position: absolute;
-        top: 40%;
-        left: 50%;
-        margin-left: -36px;
-        margin-top: -36px;
         -webkit-transition: font-size .2s;
         transition: font-size .2s;
+        top: 40%;
+        left: 50%;
+        font-size: 40px;
+        margin-left: -20px;
+        margin-top: -20px;
+    }
+
+    i.fa.fa-facebook-official{
+        color: #3B5998;
+    }
+    i.fa.fa-twitter{
+        color: #5EA9DD;
+    }
+    i.fa.fa-linkedin-square{
+        color: #0077B5;
+    }
+    i.fa.fa-envelope{
+        color: #DD4B39;
+    }
+    i.fa.fa-phone{
+        color: #009A56;
+    }
+
+    @media (min-width: 768px){
+        .home-index-page-wrapper{
+            padding-top: 20px;
+        }
+        div#popover_container{
+            top: 150px;
+        }
+        .contact_area{
+            margin-top: 90px;
+        }
+        .contact_area a.contact_item{
+            margin: 2px 36px;
+            padding: 2px 24px;
+        }
+    }
+    @media (min-width: 992px){
+        .home-index-page-wrapper{
+            padding-top: 70px;
+        }
+        div#popover_container{
+            top: 180px;
+        }
+        .contact_area{
+            margin-top: 120px;
+        }
+        .contact_area a.contact_item{
+            padding: 2px 36px;
+        }
+        .contact_area i.fa{
+            font-size: 72px;
+            margin-left: -36px;
+            margin-top: -36px;
+        }
+    }
+    @media (min-width: 1200px){
+        .home-index-page-wrapper{
+            padding-top: 90px;
+        }
+        div#popover_container{
+            top: 200px;
+        }
+        .contact_area{
+            margin-top: 160px;
+        }
+        .contact_area a.contact_item{
+            margin: 2px 48px;
+            padding: 2px 48px;
+            -webkit-transition: font-size .2s;
+            transition: font-size .2s;
+        }
+        .contact_area a.contact_item:hover i.fa{
+            font-size: 96px;
+        }
     }
 </style>
 
 <div class="row">
-    <div class="col-sm-12">
-        <div class="text-center home-index-page-wrapper">
-            <div class="text-center">
-                <div 
-                    id="popup_text" 
-                    class="screen-wrapper"
-                >
-                    <div class="animated_image_place_wrapper">
-                        <img class="image-frames" src="<?=base_url('assets/img/face-animated/base.png')?>">
-                        <img id="eyes" class="image-frames" src="<?=base_url('assets/img/face-animated/eyes-opened.png')?>">
-                    </div>
+    <div class="col-sm-12 text-center">
+        <div class="home-index-page-wrapper">
+            <div class="screen-wrapper">
+                <div class="animated_image_place_wrapper">
+                    <img class="image-frames" src="<?=base_url('assets/img/face-animated/base.png')?>">
+                    <img id="eyes" class="image-frames" src="<?=base_url('assets/img/face-animated/eyes-opened.png')?>">
                 </div>
             </div>
+            <div id="popover_container"></div>
         </div>
     </div>
     <div class="col-sm-12 text-center contact_area">
@@ -93,7 +160,7 @@
             <i class="fa fa-envelope"></i>
         </a>
         <a class="contact_item" href="tel:+6285640988820">
-            <i class="fa fa-mobile-phone"></i>
+            <i class="fa fa-phone"></i>
         </a>
     </div>
 </div>
@@ -166,18 +233,14 @@
 
         function updateContent(message, time, time_start){
             setTimeout(function(){
-                var placement = 'bottom';
-                if($(window).width() > 768){
-                    placement = 'right';
-                }
-                $("#popup_text").popover({
+                $("#popover_container").popover({
                     html: true,
-                    placement: placement,
+                    placement: 'bottom',
                     content: message,
                 });
-                $("#popup_text").popover('show');
+                $("#popover_container").popover('show');
                 setTimeout(function(){
-                    $("#popup_text").popover('destroy');
+                    $("#popover_container").popover('destroy');
                 }, time+200);
             }, time_start);
         }

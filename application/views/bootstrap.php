@@ -56,18 +56,22 @@
                 border: none;
                 padding-top: 40px;
             }
+            ul.nav.navbar-nav.navbar-right > li > a{
+                border-bottom: 1px solid rgba(90, 90, 90, .1);
+            }
+
             div#main-view{
                 margin-bottom: 80px;
             }
 
-            @media (max-width: 992px){
-            }
-            @media (max-width: 768px){
+            @media (min-width: 768px){
                 ul.nav.navbar-nav.navbar-right > li > a{
-                    border-bottom: 1px solid #666;
+                    border-bottom: none;
                 }
             }
-            @media (max-width: 480px){
+            @media (min-width: 992px){
+            }
+            @media (min-width: 1200px){
             }
         </style>
     </head>
@@ -83,7 +87,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="footer_content">
-                            <div class="float_right">
+                            <div class="text-center">
                                 <strong>&copy;</strong>
                                 2014 - <?=date('Y')?> 
                                 <?=str_repeat('&nbsp;', 2)?>
