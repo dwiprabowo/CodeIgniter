@@ -1,3 +1,5 @@
 
-.icon-enter-key:before { content: '\e800'; } /* '' */
-.icon-aqsara-logo:before { content: '\e801'; } /* '' */
+.icon-small-class-course:before { content: '\e800'; } /* '' */
+.icon-highschool:before { content: '\e801'; } /* '' */
+.icon-campus:before { content: '\e802'; } /* '' */
+.icon-graduation-result-frame:before { content: '\e803'; } /* '' */

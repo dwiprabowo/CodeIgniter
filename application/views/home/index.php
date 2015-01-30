@@ -160,7 +160,7 @@
 
         function getDayGreetingCode(hour){
             var value = "";
-            if(hour > 4 && hour <= 10){
+            if(hour > 3 && hour <= 10){
                 value = "pagi";
             }else if(hour > 11 && hour <= 14){
                 value = "siang";
