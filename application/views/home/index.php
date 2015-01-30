@@ -1,12 +1,19 @@
 <style>
     div.screen-wrapper{
+        cursor: pointer;
         display: inline-block;
         border: 15px solid rgba(204, 198, 198, 1);
         border-radius: 30px;
         padding: 10px 20px;
         padding-bottom: 0px;
         margin: 0;
-        height: 162px;
+        height: 168px;
+        -webkit-transition: all .2s;
+        transition: all .2s;
+    }
+    div.screen-wrapper:hover{
+        border-color: rgba(104, 98, 98, 1);
+        background: rgba(104, 98, 98, .1);
     }
     div.button-wrapper{
         margin-top: 2%;
@@ -24,113 +31,55 @@
         top: 0;
         left: 0;
     }
-    .contact_area{
-        left: 0;
-        width: 100%;
-        position: fixed;
-        bottom: 10%;
-    }
-    .contact_area .contact_content .contact_item{
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        margin: 60px;
-    }
-    .contact_area .contact_content .contact_item i{
-        font-size: 72px;
-    }
-    .contact_area .contact_content a.contact_item:hover i.fa{
-        font-size: 108px;
-    }
-
-    i.fa{
-        -webkit-transition: all .2s;
-        transition: all .2s;
-    }
-
-    i.fa-facebook-official{
-       color: #3B5998;
-    }
-    a:hover i.fa-facebook-official{
-        color: #2F3E5F;
-    }
-
-    i.fa-envelope{
-        color: #DA5043;
-    }
-    a:hover i.fa-envelope{
-        color: #89241B;
-    }
-
-    i.fa-mobile-phone{
-        color: #999;
-    }
-    a:hover i.fa-mobile-phone{
-        color: #333;
-    }
-
     div.popover-content{
         text-align: center;
     }
+    .home-index-page-wrapper{
+        padding-top: 80px;
+    }
 
-    @media (max-width: 992px){
-        .contact_area .contact_content .contact_item{
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            margin: 50px;
-        }
-        .contact_area .contact_content a.contact_item:hover i.fa{
-            font-size: 72px;
-        }
-        .contact_area .contact_content .contact_item i{
-            font-size: 64px;
-        }
+    .contact_area{
+        margin-top: 150px;
     }
-    @media (max-width: 768px){
-        .contact_area .contact_content .contact_item{
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            margin: 30px;
-        }
-        .contact_area .contact_content a.contact_item:hover i.fa{
-            font-size: 64px;
-        }
-        .contact_area .contact_content .contact_item i{
-            font-size: 48px;
-        }
+    .contact_area a.contact_item{
+        display: inline-block;
+        position: relative;
+        margin: 6px 45px;
+        padding: 6px 45px;
+        text-decoration: none;
     }
-    @media (max-width: 480px){
-        .contact_area .contact_content .contact_item{
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin: 20px;
-        }
-        .contact_area .contact_content a.contact_item:hover i.fa{
-            font-size: 48px;
-        }
-        .contact_area .contact_content .contact_item i{
-            font-size: 32px;
-        }
+    .contact_area a.contact_item:hover i.fa{
+        font-size: 96px;
+    }
+    .contact_area i.fa{
+        font-size: 72px;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        margin-left: -36px;
+        margin-top: -36px;
+        -webkit-transition: font-size .2s;
+        transition: font-size .2s;
     }
 </style>
-<div class="text-center home-index-page-wrapper">
-    <div class="text-center">
-        <div 
-            id="popup_text" 
-            class="screen-wrapper"
-        >
-            <div class="animated_image_place_wrapper">
-                <img class="image-frames" src="<?=base_url('assets/img/face-animated/base.png')?>">
-                <img id="eyes" class="image-frames" src="<?=base_url('assets/img/face-animated/eyes-opened.png')?>">
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="text-center home-index-page-wrapper">
+            <div class="text-center">
+                <div 
+                    id="popup_text" 
+                    class="screen-wrapper"
+                >
+                    <div class="animated_image_place_wrapper">
+                        <img class="image-frames" src="<?=base_url('assets/img/face-animated/base.png')?>">
+                        <img id="eyes" class="image-frames" src="<?=base_url('assets/img/face-animated/eyes-opened.png')?>">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="contact_area">
-    <div class="contact_content text-center">
+    <div class="col-sm-12 text-center contact_area">
         <a class="contact_item" href="https://www.facebook.com/juli.prabowo">
             <i class="fa fa-facebook-official"></i>
         </a>
@@ -141,7 +90,7 @@
             <i class="fa fa-linkedin-square"></i>
         </a>
         <a class="contact_item" href="mailto:dwi.juli.prabowo@gmail.com">
-            <i class="fa fa-envelope text-danger"></i>
+            <i class="fa fa-envelope"></i>
         </a>
         <a class="contact_item" href="tel:+6285640988820">
             <i class="fa fa-mobile-phone"></i>
@@ -184,7 +133,7 @@
             }, (1000*Math.random()));
         }
 
-        $(".animated_image_place_wrapper").hover(function(){
+        $(".screen-wrapper").click(function(){
             if(!speaking){
                 speaking = true;
                 speak();

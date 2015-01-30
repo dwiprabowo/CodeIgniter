@@ -37,7 +37,8 @@
         font-size: 256px;
     }
     .school_item_wrapper div.graduate .image{
-        margin-top: -80px;
+        position: relative;
+        top: -80px;
         font-size: 240px;
     }
     .graduation_result_wrapper{
@@ -50,15 +51,6 @@
         top: 25%;
         left: 0;
     }
-
-    <?php foreach($schools as $k => $v): ?>
-        #<?=$k?>{
-            display: none;
-        }
-        #the_<?=$k?>, #<?=$k?>_result{
-            opacity: 0;
-        }
-    <?php endforeach ?>
 </style>
 
 <div class="row outer_school_section_wrapper">
@@ -86,9 +78,9 @@
                                 <ins><?=$v->period?></ins>
                             </h2>
                         </div>
-                        <div class="item content text-left">
-                            <div class="item_content_wrapper text-center">
-                                <div class="item illustration text-center">
+                        <div class="item content">
+                            <div class="item_content_wrapper">
+                                <div class="item">
                                     <div id="the_<?=$k?>">
                                         <div class="title">
                                             <h2>
@@ -101,9 +93,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item_content_wrapper">
-                                <div class="item graduate">
+                                <div class="item">
                                     <div 
                                         class="graduation_result_wrapper" 
                                         id="<?=$k?>_result"
@@ -127,42 +117,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(function(){
-        var timer = <?=$timer->start?>;
-        var padding_time = <?=$timer->padding_time?>;
-
-        <?php 
-            $index = 0;
-            $school = current($schools);
-            $keys = array_keys($schools);
-            for($i = count($keys) - 1;$i >= 0;$i--):
-        ?>
-            setTimeout(function(){
-                $("#<?=$keys[$i]?>").fadeIn('slow');
-            }, timer);
-            timer += padding_time;
-            setTimeout(function(){
-                $("#the_<?=$keys[$i]?>").animate({opacity: 1});
-            }, timer);
-            timer += padding_time;
-            setTimeout(function(){
-                $("#<?=$keys[$i]?>_result").animate({opacity: 1});
-            }, timer);
-            timer += padding_time;
-            <?php 
-                if((count($schools) - 1) !== $index):
-                    $index++;
-            ?>
-                setTimeout(function(){
-                    $("#hr_loading_<?=$index?>").animate({width: "100%"});
-                }, timer);
-                timer += padding_time;
-            <?php
-                endif;
-                $school = next($schools);
-            ?>
-        <?php endfor ?>
-    });
-</script>
