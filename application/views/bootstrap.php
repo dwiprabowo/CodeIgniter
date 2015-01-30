@@ -25,6 +25,9 @@
             strong{
                 font-family: "Ubuntu Bold", "Ubuntu Regular", sans-serif;
             }
+            small{
+                font-family: "Ubuntu Light", "Ubuntu Regular", sans-serif;
+            }
             a{
                 -webkit-transition: all .2s;
                 transition: all .2s;
