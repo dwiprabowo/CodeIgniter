@@ -209,12 +209,43 @@
 
         function speak(){
             var message = [
-                {content: "Halo! Selamat "+getDayGreetingCode(getHour()), time: 1500},
-                {content: "Nama saya <strong>Dwi Juli Prabowo</strong>", time: 2000},
-                {content: "Selamat datang di halaman profil <i>online</i> saya", time: 3000},
-                {content: "Untuk mengetahui lebih detail mengenai saya, Anda bisa mengakses menu yang ada di <strong>kanan atas</strong>", time: 6000},
-                {content: "Untuk kontak langsung dengan saya, Anda bisa menghubungi akun sosial media, email atau nomor telepon genggam yang ada di <strong>bawah</strong>", time: 8000},
-                {content: "Terima kasih, semoga "+getDayGreetingCode(getHour())+" Anda menyenangkan", time: 6000},
+                {
+                    content: "Halo! Selamat "+getDayGreetingCode(getHour())
+                    , time: 1500
+                },
+                {
+                    content: "Nama saya <strong>Dwi Juli Prabowo</strong>"
+                    , time: 2000
+                },
+                {
+                    content: "Selamat datang di halaman profil <i>online</i> saya"
+                    , time: 3000
+                },
+                {
+                    content: "Informasi untuk Anda,"
+                        +" profil ini berhubungan dengan industry"
+                        +" <strong>Teknologi Informasi</strong>"
+                    , time: 7000
+                },
+                {
+                    content: "Untuk mengetahui lebih detail mengenai saya,"
+                        +" Anda bisa mengakses menu yang ada di "
+                        +"<strong>kanan atas</strong>"
+                    , time: 6000
+                },
+                {
+                    content: "Untuk kontak langsung dengan saya,"
+                        +" Anda bisa menghubungi akun sosial media,"
+                        +" email atau nomor telepon genggam "
+                        +"yang ada di <strong>bawah</strong>"
+                    , time: 7000
+                },
+                {
+                    content: "Terima kasih, semoga "
+                        +getDayGreetingCode(getHour())
+                        +" Anda menyenangkan"
+                    , time: 4000
+                },
             ];
             var time_padding = 500;
             for(var i = 0;i < message.length;i++){

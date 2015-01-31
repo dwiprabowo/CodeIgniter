@@ -22,7 +22,7 @@
             .navbar-brand{
                 font-family: "Ubuntu Bold", "Ubuntu Regular", sans-serif;
             }
-            strong{
+            h1, h2, h3, h4, h5, h6, strong, b{
                 font-family: "Ubuntu Bold", "Ubuntu Regular", sans-serif;
             }
             small{
@@ -62,14 +62,19 @@
             ul.nav.navbar-nav.navbar-right > li > a{
                 border-bottom: 1px solid rgba(90, 90, 90, .1);
             }
-
             div#main-view{
                 margin-bottom: 80px;
+            }
+            blockquote{
+                font-size: .85em;
             }
 
             @media (min-width: 768px){
                 ul.nav.navbar-nav.navbar-right > li > a{
                     border-bottom: none;
+                }
+                blockquote{
+                    font-size: .75em;
                 }
             }
             @media (min-width: 992px){
