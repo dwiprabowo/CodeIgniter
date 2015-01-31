@@ -38,7 +38,7 @@
     div#popover_container{
         position: absolute;
         width: 100%;
-        height: 10px;
+        height: 0px;
         top: 180px;
     }
     .contact_area{
