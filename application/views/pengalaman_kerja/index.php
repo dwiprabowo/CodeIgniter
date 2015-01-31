@@ -10,6 +10,11 @@
                     'level'     => 'Awesome PHP Developer',
                     'start'     => ['year' => 2014, 'month' => 8],
                     'end'       => FALSE,
+                    'desc'      => <<<EOD
+Menjadi bagian dari tim developer,
+Bertanggung jawab terhadap <em>issues</em> yang ada,
+Implementasi fitur yang dibutuhkan oleh produk.
+EOD
                 ],
             ],
         ],
@@ -23,6 +28,10 @@
                     'level'     => 'junior',
                     'start'     => ['year' => 2013, 'month' => 11],
                     'end'       => ['year' => 2014, 'month' => 4],
+                    'desc'      => <<<EOD
+<em>Maintenance</em> dan mengembangkan sistem lama,
+melakukan optimisasi yang diperlukan pada sistem
+EOD
                 ],
             ],
         ],
@@ -42,6 +51,11 @@
                     'level'     => 'Game Project',
                     'start'     => ['year' => 2013, 'month' => 7],
                     'end'       => ['year' => 2013, 'month' => 10],
+                    'desc'      => <<<EOD
+Membuat game berbasis <em>smartphone</em> Android.
+Melakukan riset game engine. Menggunakan <b>Corona</b>
+sebagai alat untuk pengembangan.
+EOD
                 ],
             ],
         ],
@@ -55,6 +69,10 @@
                     'level'     => 'Lead',
                     'start'     => ['year' => 2012, 'month' => 12],
                     'end'       => ['year' => 2013, 'month' => 8],
+                    'desc'      => <<<EOD
+Studio Game yang dibuat bersama teman-teman dari Amikom dan Gameloft.
+Membuat game yang kebanyakan berbasis Android.
+EOD
                 ],
             ],
         ],
@@ -68,18 +86,30 @@
                     'level'     => 'Junior',
                     'start'     => ['year' => 2011, 'month' => 5],
                     'end'       => ['year' => 2011, 'month' => 12],
+                    'desc'      => <<<EOD
+Perusahaan paling besar yang pernah saya masuki.
+Melakukan proses <em>porting</em> game ke beberapa device.
+EOD
                 ],
                 [
                     'job_title' => 'Java Mobile Game Programmer',
                     'level'     => 'Senior',
                     'start'     => ['year' => 2012, 'month' => 1],
                     'end'       => ['year' => 2012, 'month' => 9],
+                    'desc'      => <<<EOD
+Memiliki pengalaman lebih, memiliki kewajiban meng-<em>handle</em>
+Programmer baru (junior).
+EOD
                 ],
                 [
                     'job_title' => 'Java Mobile Game Programmer',
                     'level'     => 'Supervisor',
                     'start'     => ['year' => 2012, 'month' => 10],
                     'end'       => ['year' => 2012, 'month' => 11],
+                    'desc'      => <<<EOD
+Berimbang antara teknikal dan manajemen. Memimpin <em>sub</em>-tim
+dengan jumlah total 3 orang.
+EOD
                 ]
             ],
         ],
@@ -90,15 +120,23 @@
             'parts'     => [
                 [
                     'job_title' => 'Asisten Praktikum',
-                    'level'     => 'Mata Kuliah -> Konsep Sistem Informasi',
+                    'level'     => 'Mata Kuliah - Konsep Sistem Informasi',
                     'start'     => ['year' => 2010, 'month' => 9],
                     'end'       => ['year' => 2011, 'month' => 2],
+                    'desc'      => <<<EOD
+Pengalaman bekerja formal pertama kali.
+Membantu Dosen praktik, menjelaskan materi kepada praktikan.
+EOD
                 ],
                 [
                     'job_title' => 'Asisten Praktikum',
                     'level'     => 'Mata Kuliah - Pemrograman Terstruktur',
                     'start'     => ['year' => 2011, 'month' => 3],
                     'end'       => ['year' => 2011, 'month' => 8],
+                    'desc'      => <<<EOD
+Mengisi materi perkuliahan pada saat dipersilakan oleh Dosen praktik.
+Membantu proses penilaian praktikan pada mata kuliah tersebut.
+EOD
                 ]
             ]
         ],
@@ -169,7 +207,7 @@
         $result = [];
         foreach ($keys as $k => $v) {
             $key = $data[$v['company']]['key'];
-            $result[] = $key."_trigger";
+            $result[] = $key."-trigger";
         }
         return implode(' ', $result);
     }
@@ -184,6 +222,19 @@
         return json_encode($result);
     }
 
+    $unique_classes = [];
+
+    function unique_class($im_a, &$unique_classes){
+        $result = md5(json_encode($im_a));
+        if(in_array($result, $unique_classes)){
+            return "uniqueclasses".array_search($result, $unique_classes);
+        }else{
+            $unique_classes[] = $result;
+        }
+        $key = array_search($result, $unique_classes);
+        return "uniqueclasses".$key;
+    }
+
 ?>
 
 <style>
@@ -191,6 +242,10 @@
         position: relative;
         padding: 20px 0px;
         padding-left: 20px;
+        cursor: pointer;
+    }
+    .content_wrapper .year{
+        border-bottom: 1px solid #333;
     }
     #work{
         position: fixed;
@@ -199,6 +254,67 @@
     .company{
         display: none;
     }
+    .company .image i.fa{
+        font-size: 108px;
+    }
+    .content_wrapper .month.active{
+        color: #ccc;
+        cursor: default;
+    }
+    blockquote.desc{
+        max-height: 100px;
+        overflow-y: scroll;
+    }
+
+    @media (max-height: 500px){
+        blockquote.desc{
+            display: none;
+        }
+    }
+
+    @media (min-width: 768px){
+        #work{
+            max-width: 400px;
+        }
+    }
+
+    @media (min-width: 992px){
+        #work{
+            max-width: 600px;
+        }
+        blockquote.desc{
+            max-height: 200px;
+        }
+    }
+
+    @media (min-width: 992px){
+        #work{
+            overflow: auto;
+            max-width: 600px;
+        }
+        blockquote.desc{
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    }
+
+    @media (min-width: 1200px){
+        #work{
+            max-width: 700px;
+        }
+        .work #work *{
+            font-size: 1.2em;
+        }
+        .work #work h3{
+            font-size: 2.4em;
+        }
+        .work #work h3 small{
+            font-size: .85em;
+        }
+        .work #work .company .image i.fa{
+            font-size: 108px;
+        }
+    }
 </style>
 
 <div class="row content_wrapper">
@@ -206,20 +322,28 @@
         <div id="work">
             <?php foreach($works as $k => $v): ?>
                 <div class="company" id="company_<?=$v['key']?>">
-                    <h2><?=$v['company']?> <small>@<?=$v['city']?></small></h2>
+                    <h3><?=$v['company']?> <small>@<?=$v['city']?></small></h3>
                     <div>
                         <strong class="job_title"></strong> 
                         <br>
                         (<span class="job_level"></span>)
                     </div>
+                    <blockquote class="desc"></blockquote>
                 </div>
             <?php endforeach ?>
+            <div class="company" id="no_data">
+                <h3>Tidak ada Data</h3>
+                <div class="image">
+                    <i class="fa fa-frown-o"></i>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-xs-4 time">
         <?php foreach($objects as $k => $v): ?>
             <div 
-                class="month <?=get_work_class($v->im_a, $works)?>"
+                id="month<?=$k?>"
+                class="month <?=get_work_class($v->im_a, $works)?> <?=unique_class($v->im_a, $unique_classes)?>"
                 data-job='<?=get_job($v->im_a, $works)?>'
             >
                 <small>
@@ -246,27 +370,32 @@
             var data = $(this).data('job');
             var data_string = JSON.stringify(data);
             if(data_string != active){
+                var classes = $(this).attr('class').split(/\s+/);
+                $(".month").removeClass('active');
+                $("."+classes.join(".")).addClass('active');
                 var ids = get_company_ids($(this));
                 $(".company").hide();
                 for(var i = 0;i < ids.length;i++){
-                    $("#"+ids[i]).show();
+                    $("#"+ids[i]).fadeIn();
+                }
+                if(data_string == "[]"){
+                    $("#no_data").fadeIn();
                 }
                 for(var i = 0;i < data.length;i++){
                     $("#"+data[i].id).find('.job_title').html(data[i].job_title);
                     $("#"+data[i].id).find('.job_level').html(data[i].level);
+                    $("#"+data[i].id).find('.desc').html(data[i].desc);
                 }
                 active = data_string;
             }
         });
-        <?php foreach($works as $k => $v): ?>
-        <?php endforeach ?>
 
         function get_company_ids(el){
             var result = [];
             var classes = el.attr('class').split(/\s+/);
             for(var i = 0;i < classes.length;i++){
-                if(contain(classes[i], '_trigger')){
-                    result.push('company_'+classes[i].replace('_trigger', ''));
+                if(contain(classes[i], '-trigger')){
+                    result.push('company_'+classes[i].replace('-trigger', ''));
                 }
             }
             return result;
@@ -278,5 +407,10 @@
             }
             return false;
         }
+
+        setTimeout(function(){
+            $("#month<?=count($objects)-1?>").mouseover();
+            window.scrollTo(0, $(".time").height());
+        }, 1000);
     });
 </script>

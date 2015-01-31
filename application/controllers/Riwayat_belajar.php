@@ -7,7 +7,7 @@ class Riwayat_belajar extends Online_cv{
             'timer' => [
                 'start' => 100,
                 'padding_time' => 1000,
-                'padding_time_loading' => 12000,
+                'padding_time_loading' => 6000,
             ],
             'items' => [
                 'university' => [
