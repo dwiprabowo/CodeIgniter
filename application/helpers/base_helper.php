@@ -61,16 +61,8 @@ if(!function_exists('rpath')){
 
 if(!function_exists('d')){
     function d($object){
-        if(!is_cli_request()){
-            echo '<pre>';
-        }
-        if(is_array($object)){
-            echo json_encode($object);
-        } else {
-            var_dump($object);
-        }
-        if(!is_cli_request()){
-            echo '</pre>';
-        }
+        echo "<pre>";
+        print_r($object);
+        echo "</pre>";
     }
 }
