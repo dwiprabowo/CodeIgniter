@@ -45,6 +45,10 @@ EOD
                     'level'     => 'Web Project',
                     'start'     => ['year' => 2013, 'month' => 4],
                     'end'       => ['year' => 2013, 'month' => 6],
+                    'desc'      => <<<EOD
+Pertama kali membuat sistem berbasis web penuh menggunakan framework
+backend dengan konsep mvc dan <em>mobile optimized</em> frontend framework.
+EOD
                 ],
                 [
                     'job_title' => 'Programmer',
@@ -248,6 +252,7 @@ EOD
         border-bottom: 1px solid #333;
     }
     #work{
+        overflow-y: auto;
         position: fixed;
         max-width: 200px;
     }
@@ -261,16 +266,6 @@ EOD
         color: #ccc;
         cursor: default;
     }
-    blockquote.desc{
-        max-height: 100px;
-        overflow-y: scroll;
-    }
-
-    @media (max-height: 500px){
-        blockquote.desc{
-            display: none;
-        }
-    }
 
     @media (min-width: 768px){
         #work{
@@ -282,19 +277,12 @@ EOD
         #work{
             max-width: 600px;
         }
-        blockquote.desc{
-            max-height: 200px;
-        }
     }
 
     @media (min-width: 992px){
         #work{
             overflow: auto;
             max-width: 600px;
-        }
-        blockquote.desc{
-            max-height: 400px;
-            overflow-y: auto;
         }
     }
 
@@ -408,6 +396,7 @@ EOD
             return false;
         }
 
+        $("#work").css("max-height", ($(window).height() - 140)+"px");
         setTimeout(function(){
             $("#month<?=count($objects)-1?>").mouseover();
             window.scrollTo(0, $(".time").height());
