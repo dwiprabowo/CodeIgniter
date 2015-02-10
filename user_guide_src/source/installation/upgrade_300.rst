@@ -168,6 +168,21 @@ that you should make:
     `Session Metadata <../libraries/sessions.html#accessing-session-metadata>`_
     if your application relies on those values.
 
+  - Check ``unset_userdata()`` usage
+
+    Previously, this method used to accept an associative array of
+    ``'key' => 'dummy value'`` pairs for unsetting multiple keys. That
+    however makes no sense and you now have to pass *only* the keys, as
+    the elements of an array.
+
+    ::
+
+    	// Old
+    	$this->session->unset_userdata(array('item' => '', 'item2' => ''));
+
+    	// New
+    	$this->session->unset_userdata(array('item', 'item2'));
+
 Finally, if you have written a Session extension, you must now move it to
 the *application/libraries/Session/* directory, although chances are that
 it will now also have to be re-factored.
@@ -197,25 +212,62 @@ is suitable for the command line. This of course requires another level of separ
 It is safe to move your old templates from _application/errors* to _application/views/errors/html*,
 but you'll have to copy the new _application/views/errors/cli* directory from the CodeIgniter archive.
 
-*******************************************************
-Step 9: Update your config/routes.php containing (:any)
-*******************************************************
+******************************************
+Step 9: Update your config/routes.php file
+******************************************
 
-Historically, CodeIgniter has always provided the **:any** wildcard in routing,
-with the intention of providing a way to match any character **within** an URI segment.
+Routes containing :any
+======================
 
-However, the **:any** wildcard is actually just an alias for a regular expression
-and used to be executed in that manner as **.+**. This is considered a bug, as it
-also matches the / (forward slash) character, which is the URI segment delimiter
-and that was never the intention. In CodeIgniter 3, the **:any** wildcard will now
-represent **[^/]+**, so that it will not match a forward slash.
+Historically, CodeIgniter has always provided the **:any** wildcard in
+routing, with the intention of providing a way to match any character
+**within** an URI segment.
 
-There are certainly many developers that have utilized this bug as an actual feature.
-If you're one of them and want to match a forward slash, please use the **.+**
-regular expression::
+However, the **:any** wildcard is actually just an alias for a regular
+expression and used to be executed in that manner as **.+**. This is
+considered a bug, as it also matches the / (forward slash) character, which
+is the URI segment delimiter and that was never the intention.
+
+In CodeIgniter 3, the **:any** wildcard will now represent **[^/]+**, so
+that it will not match a forward slash.
+
+There are certainly many developers that have utilized this bug as an actual
+feature. If you're one of them and want to match a forward slash, please use
+the **.+** regular expression::
 
 	(.+)	// matches ANYTHING
 	(:any)	// matches any character, except for '/'
+
+Directories and 'default_controller', '404_override'
+====================================================
+
+As you should know, the ``$route['default_controller']`` and
+``$route['404_override']`` settings accept not only a controller name, but
+also *controller/method* pairs. However, a bug in the routing logic has
+made it possible for some users to use that as *directory/controller*
+instead.
+
+As already said, this behavior was incidental and was never intended, nor
+documented. If you've relied on it, your application will break with
+CodeIgniter 3.0.
+
+Another notable change in version 3 is that 'default_controller' and
+'404_override' are now applied *per directory*. To explain what this means,
+let's take the following example::
+
+	$route['default_controller'] = 'main';
+
+Now, assuming that your website is located at *example.com*, you already
+know that if a user visits ``http://example.com/``, the above setting will
+cause your 'Main' controller to be loaded.
+
+However, what happens if you have an *application/controllers/admin/*
+directory and the user visits ``http://example.com/admin/``?
+In CodeIgniter 3, the router will look for a 'Main' controller under the
+admin/ directory as well. If not found, it will fallback to the parent
+(*application/controllers/*) directory, like in version 2.x.
+
+The same rule applies to the '404_override' setting.
 
 *************************************************************************
 Step 10: Many functions now return NULL instead of FALSE on missing items
@@ -282,7 +334,7 @@ Otherwise however, please review your usage of the following functions:
    - input->server()
    - input->input_stream()
 
- - :doc:`Cookie Helper <../helpers/cookie_helper>` :func:`get_cookie()`
+ - :doc:`Cookie Helper <../helpers/cookie_helper>` :php:func:`get_cookie()`
 
 .. important:: Another related change is that the ``$_GET``, ``$_POST``,
 	``$_COOKIE`` and ``$_SERVER`` superglobals are no longer
@@ -512,7 +564,7 @@ CodeIgniter 3.1+.
 String helper repeater()
 ========================
 
-:doc:`String Helper <../helpers/string_helper>` function :func:`repeater()` is now just an alias for
+:doc:`String Helper <../helpers/string_helper>` function :php:func:`repeater()` is now just an alias for
 PHP's native ``str_repeat()`` function. It is deprecated and scheduled for removal in CodeIgniter 3.1+.
 
 .. note:: This function is still available, but you're strongly encouraged to remove its usage sooner
@@ -521,7 +573,7 @@ PHP's native ``str_repeat()`` function. It is deprecated and scheduled for remov
 String helper trim_slashes()
 ============================
 
-:doc:`String Helper <../helpers/string_helper>` function :func:`trim_slashes()` is now just an alias
+:doc:`String Helper <../helpers/string_helper>` function :php:func:`trim_slashes()` is now just an alias
 for PHP's native ``trim()`` function (with a slash passed as its second argument). It is deprecated and
 scheduled for removal in CodeIgniter 3.1+.
 
@@ -531,11 +583,11 @@ scheduled for removal in CodeIgniter 3.1+.
 Form helper form_prep()
 =======================
 
-:doc:`Form Helper <../helpers/form_helper>` function :func:`form_prep()`
+:doc:`Form Helper <../helpers/form_helper>` function :php:func:`form_prep()`
 is now just an alias for :doc:`common function </general/common_functions>`
 :func:`html_escape()`. It is deprecated and will be removed in the future.
 
-Please use :func:`html_escape()` instead.
+Please use :php:func:`html_escape()` instead.
 
 .. note:: This function is still available, but you're strongly encouraged
 	to remove its usage sooner rather than later.
@@ -545,8 +597,8 @@ Email helper functions
 
 :doc:`Email Helper <../helpers/email_helper>` only has two functions
 
- - :func:`valid_email()`
- - :func:`send_email()`
+ - :php:func:`valid_email()`
+ - :php:func:`send_email()`
 
 Both of them are now aliases for PHP's native ``filter_var()`` and ``mail()`` functions, respectively.
 Therefore the :doc:`Email Helper <../helpers/email_helper>` altogether is being deprecated and
@@ -608,7 +660,7 @@ CodeIgniter 3.1+.
 String helper random_string() types 'unique' and 'encrypt'
 ==========================================================
 
-When using the :doc:`String Helper <../helpers/string_helper>` function :func:`random_string()`,
+When using the :doc:`String Helper <../helpers/string_helper>` function :php:func:`random_string()`,
 you should no longer pass the **unique** and **encrypt** randomization types. They are only
 aliases for **md5** and **sha1** respectively and are now deprecated and scheduled for removal
 in CodeIgniter 3.1+.
@@ -619,7 +671,7 @@ in CodeIgniter 3.1+.
 URL helper url_title() separators 'dash' and 'underscore'
 =========================================================
 
-When using the :doc:`URL Helper <../helpers/url_helper>` function :func:`url_title()`, you
+When using the :doc:`URL Helper <../helpers/url_helper>` function :php:func:`url_title()`, you
 should no longer pass **dash** or **underscore** as the word separator. This function will
 now accept any character and you should just pass the chosen character directly, so you
 should write '-' instead of 'dash' and '_' instead of 'underscore'.
@@ -699,7 +751,7 @@ Input library method is_cli_request()
 Calls to the ``CI_Input::is_cli_request()`` method are necessary at many places
 in the CodeIgniter internals and this is often before the :doc:`Input Library
 <../libraries/input>` is loaded. Because of that, it is being replaced by a common
-function named :func:`is_cli()` and this method is now just an alias.
+function named :php:func:`is_cli()` and this method is now just an alias.
 
 The new function is both available at all times for you to use and shorter to type.
 

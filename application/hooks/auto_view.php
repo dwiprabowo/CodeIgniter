@@ -12,7 +12,11 @@ class AutoView{
         if($this->ci->input->is_cli_request()){
             return;
         }
-        $this->ci->_build();
+        if(method_exists($this->ci, '_build')){
+            $this->ci->_build();
+        }else{
+            return;
+        }
         $template = $this->ci->_template();
         $data = $this->ci->data();
         if($template){
