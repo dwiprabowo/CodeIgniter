@@ -2,7 +2,12 @@
     <?php foreach($data->fields as $field): ?>
         <div class="form-group <?=form_error($field->field)?'has-error':''?>">
             <div class="col-sm-3">
-                <?=$field->label?>
+                <label 
+                    for="<?=$field->field?>" 
+                    class="control-label"
+                >
+                    <?=$field->label?>
+                </label>
             </div>
             <div class="col-sm-9">
                 <?=$field->input_element?>
